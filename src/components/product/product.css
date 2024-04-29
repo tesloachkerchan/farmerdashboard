@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    width: 100%;
+}
+.header .search{
+    width: 30%;
+    margin-left: 600px;
+    margin-top: 10px;
+    display: flex;
+}
+.searchInput{
+    border: 1px solid black;
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.sidebarHr{
+    margin: 7px;
+}

@@ -1,0 +1,4 @@
+.center{
+    flex: 8;
+    height: calc(100vh - 50px);
+}
