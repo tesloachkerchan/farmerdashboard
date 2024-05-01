@@ -1,19 +1,11 @@
 .sidebar{
     flex: 2;
     height: calc(100vh - 50px);
-    overflow-y: scroll;
     position: sticky;
     top: 50px;
+    border-right: 1px solid rgb(122, 146, 133);
 }
-::-webkit-scrollbar{
-    width: 5px;
-}
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgb(180, 164, 164);
-}
+
 .sidebarWrapper{
     padding: 20px;
 }
@@ -68,4 +60,19 @@
     object-fit: cover;
     cursor: pointer;
     margin-right: 10px;
+}
+.sidebarAvatar {
+    align-items: center;
+}
+
+.avatarImage {
+    width: 60px;
+    /* Adjust size as needed */
+    height: 60px;
+    /* Adjust size as needed */
+    border-radius: 50%;
+    /* Make it a circle */
+    margin-left: 10px;
+    margin-top: 15px;
+    /* Adjust spacing */
 }

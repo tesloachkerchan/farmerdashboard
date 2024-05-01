@@ -10,8 +10,9 @@ function Sidebar() {
   return (
     <div className='sidebar'>
       <div className="sidebarAvatar">
+          <img src='https://i.ibb.co/4pDNDk1/avatar.png' alt="Avatar" className="avatarImage" />
           <h1>Farmer</h1>
-        </div>
+      </div>
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <Link to='/'>

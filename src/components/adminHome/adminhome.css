@@ -25,6 +25,10 @@
     --orange: #fd7238;
     --light-orange: #ffe0d3;
 }
+.admin{
+    width: 100%;
+    position: sticky;
+}
 .box-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -78,8 +82,20 @@
 .box-info li .text p {
     color: var(--dark);
 }
-
+.center{
+    display: flex;
+    margin-top: 20px;
+}
 .chart{
+    margin: 15px;
     width: 50%;
-    height: 50%;
+    height: 100%;
+    flex: 5;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 33px;
+}
+.recentorder{
+    flex: 5;
+    margin: 10px;
 }

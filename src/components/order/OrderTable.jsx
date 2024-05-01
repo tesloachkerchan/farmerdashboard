@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -18,22 +19,11 @@ const columns = [
   { id: 'status', label: 'Status', minWidth: 100 },
 ];
 
-function createData(serial, date, orderId, orderAmount, status) {
-  return { serial, date, orderId, orderAmount, status };
-}
-
-const rows = [
-  createData(1, '2024-04-01', 'ORD001', 100, 'Pending'),
-  createData(2, '2024-04-02', 'ORD002', 150, 'Completed'),
-  createData(3, '2024-04-03', 'ORD003', 200, 'Pending'),
-  // Add more rows as needed
-];
-
 const getStatusColor = (status) => {
   switch (status) {
-    case 'Pending':
+    case 'pending':
       return orange[500];
-    case 'Completed':
+    case 'delivered':
       return green[500];
     default:
       return blue[500];
@@ -43,6 +33,26 @@ const getStatusColor = (status) => {
 const OrderTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(6);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/v1/order/farmer/6623d543cf48322887dd9d86');
+      const { data } = response;
+      console.log(data)
+      if (Array.isArray(data.orders)) {
+        setOrders(data.orders);
+      } else {
+        console.error('Invalid data format for orders:', data);
+      }
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -78,18 +88,14 @@ const OrderTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.serial} component={Link} to={`/order/${row.orderId}`}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align} style={{ color: column.id === 'status' ? getStatusColor(value) : 'inherit' }}>
-                        {value}
-                      </TableCell>
-                    );
-                  })}
+            {orders.map((order, index) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={order._id} component={Link} to={`/order/${order._id}`}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{order.createdAt}</TableCell>
+                  <TableCell>{order._id}</TableCell>
+                  <TableCell>{order.overallTotal}</TableCell>
+                
+                  <TableCell style={{ color: getStatusColor(order.orderStatus) }}>{order.orderStatus}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
@@ -98,7 +104,7 @@ const OrderTable = () => {
       <TablePagination
         rowsPerPageOptions={[6, 12]}
         component="div"
-        count={rows.length}
+        count={orders.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

@@ -5,6 +5,9 @@ import ColumnGroupingTable from '../product/ColumnGroupingTable'; // Assuming Co
 import AdminHome from '../adminHome/AdminHome';
 import OrderTable from '../order/OrderTable';
 import OrderDetailPage from '../order/OrderDetailPage ';
+import AddProductForm from '../product/AddProduct';
+import ProductDetailPage from '../product/ProductDetail';
+import EditProductForm from '../product/EditProduct';
 
 function Center() {
   return (
@@ -14,6 +17,9 @@ function Center() {
         <Route path="/productlist" element={<ColumnGroupingTable />} /> {/* Adjust path */}
         <Route path="/order" element={<OrderTable />} />
         <Route path="/order/:id" element={<OrderDetailPage />} />
+        <Route path="/product/detail/:id" element={<ProductDetailPage />} />
+        <Route path="/addproduct" element={<AddProductForm />} />
+        <Route path="/product/edit/:id" element={<EditProductForm />} />
         </Routes>
     </div>
   );

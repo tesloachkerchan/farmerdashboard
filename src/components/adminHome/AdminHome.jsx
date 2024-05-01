@@ -4,6 +4,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import BarChart from '../chart/BarChart'
 import './adminhome.css'
+import RecentOrder from '../order/RecentOrder';
 
 function AdminHome() {
   return (
@@ -35,8 +36,14 @@ function AdminHome() {
             </span>
           </li>
         </div>
-      <div className='chart'>
+      <div className='center'>
+        <div className='chart'>
         <BarChart />
+        </div>
+        <div className='recentorder'>
+          <RecentOrder />
+        </div>
+        
       </div>
     </div>
   )

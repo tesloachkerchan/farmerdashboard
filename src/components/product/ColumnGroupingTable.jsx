@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import Axios
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,41 +13,36 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { green, red, blue } from '@mui/material/colors';
-import './product.css'
+import './product.css';
+import { Link } from 'react-router-dom';
 
 const columns = [
   { id: 'serial', label: 'S/No', minWidth: 50 },
   { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'price', label: 'Price', minWidth: 100 },
   { id: 'quantity', label: 'Quantity', minWidth: 100 },
-  { id: 'value', label: 'Value', minWidth: 100 },
   { id: 'actions', label: 'Actions', minWidth: 100 },
-];
-
-function createData(serial, name, price, quantity, value) {
-  return { serial, name, price, quantity, value };
-}
-
-const rows = [
-  createData(1, 'Product 1', 10, 5, 50),
-  createData(2, 'Product 2', 15, 3, 45),
-  createData(3, 'Product 3', 20, 7, 140),
-  createData(4, 'Product 4', 8, 10, 80),
-  createData(5, 'Product 5', 12, 6, 72),
-  createData(6, 'Product 6', 25, 2, 50),
-  createData(7, 'Product 7', 18, 4, 72),
-  createData(8, 'Product 8', 30, 1, 30),
-  createData(9, 'Product 9', 22, 3, 66),
-  createData(10, 'Product 10', 16, 5, 80),
-  createData(11, 'Product 11', 14, 2, 28),
-  createData(12, 'Product 12', 11, 8, 88),
-  createData(13, 'Product 13', 11, 8, 88),
-  createData(14, 'Product 14', 11, 8, 88),
 ];
 
 export default function ColumnGroupingTable() {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(6);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [searchInput, setSearchInput] = useState('');
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch product data when component mounts
+    fetchProducts();
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/v1/products/6623d543cf48322887dd9d86'); // Replace '/api/products' with your actual backend endpoint
+      setProducts(response.data); // Set the fetched products into state
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -57,19 +53,45 @@ export default function ColumnGroupingTable() {
     setPage(0);
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+  const handleDelete = async (productId) => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      try {
+        await axios.delete(`http://localhost:4000/api/v1/products/6623d543cf48322887dd9d86/${productId}`);
+        // Refresh the products list after deletion
+        fetchProducts();
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    }
+  };
+
+  // Filter products based on search input
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <Paper sx={{ width: '100%' }}>
       <div className='header'>
         <h1>Products</h1>
         <div className='search'>
-          <input type='text' placeholder='search' className="searchInput" />
+          <input
+            type='text'
+            placeholder='Search Product'
+            className="searchInput"
+            value={searchInput}
+            onChange={handleSearchInputChange}
+          />
         </div>
       </div>
       <hr className='sidebarHr' />
       <TableContainer sx={{ maxHeight: 500 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow sx={{Height: '5px' }}>
+            <TableRow sx={{ Height: '5px' }}>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -82,45 +104,40 @@ export default function ColumnGroupingTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {filteredProducts
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.serial}>
-                    {columns.map((column) => {
-                      if (column.id === 'actions') {
-                        return (
-                          <TableCell key={column.id} align="center">
-                            <IconButton>
-                              <VisibilityIcon style={{ color: blue[500] }} />
-                            </IconButton>
-                            <IconButton>
-                              <EditIcon style={{ color: green[500] }} />
-                            </IconButton>
-                            <IconButton>
-                              <DeleteIcon style={{ color: red[500] }} />
-                            </IconButton>
-                          </TableCell>
-                        );
-                      } else {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value}
-                          </TableCell>
-                        );
-                      }
-                    })}
-                  </TableRow>
-                );
-              })}
+              .map((product, index) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={product.id} >
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{product.name}</TableCell>
+                  <TableCell>{product.price}</TableCell>
+                  <TableCell>{product.availableQuantity}</TableCell>
+                  <TableCell>
+                    <IconButton>
+                      <Link to={`/product/detail/${product._id}`}>
+                        <VisibilityIcon style={{ color: blue[500] }} />
+                      </Link>
+                    </IconButton>
+                    <IconButton>
+                      <Link to={`/product/edit/${product._id}`}>
+                        <EditIcon style={{ color: green[500] }} />
+                      </Link>
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(product._id)}>
+                      <div>
+                        <DeleteIcon style={{ color: red[500] }} />
+                      </div>
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[6, 12]}
+        rowsPerPageOptions={[5, 10]}
         component="div"
-        count={rows.length}
+        count={filteredProducts.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

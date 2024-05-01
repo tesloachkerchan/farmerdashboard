@@ -1,0 +1,29 @@
+.product-detail-container {
+    width: 70%;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.product-detail-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-detail-info {
+    margin-top: 20px;
+}
+
+.description-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+}
