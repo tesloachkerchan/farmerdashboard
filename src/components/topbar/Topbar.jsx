@@ -3,7 +3,6 @@ import './topbar.css'
 function Topbar() {
   return (
     <div className='topbarContainer'>
-      top
     </div>
   )
 }

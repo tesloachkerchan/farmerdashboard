@@ -1,23 +1,26 @@
-import axios from 'axios'; // Import axios for making HTTP requests
-import './addproduct.css'; // Import CSS file for styling
-import { useState } from 'react';
+import axios from 'axios';
+import './addproduct.css';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+
 function AddProductForm() {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     price: '',
     availableQuantity: '',
-    image: null, // To store the image file
+    image: null,
   });
+  const { user } = useContext(AuthContext);
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to the server with the form data
-      const response = await axios.post(`http://localhost:4000/api/v1/products/6623d543cf48322887dd9d86`, formData);
+      const response = await axios.post(
+        `http://localhost:4000/api/v1/products/${user._id}`,
+        formData
+      );
       console.log('Product added:', response.data);
-      // Clear the form after successful submission
       setFormData({
         name: '',
         description: '',
@@ -32,15 +35,21 @@ function AddProductForm() {
     }
   };
 
-  // Function to handle input changes
   const handleChange = (e) => {
     if (e.target.name === 'image') {
-      // Set the image file to the state
       setFormData({ ...formData, image: e.target.files[0] });
     } else {
-      // Set other form data
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
+  };
+
+  const handleTextareaChange = (e) => {
+    // Auto-resize textarea based on content
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
+
+    // Set form data
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -63,9 +72,10 @@ function AddProductForm() {
           <textarea
             name="description"
             value={formData.description}
-            onChange={handleChange}
+            onChange={handleTextareaChange}
             required
             className="form-control"
+            style={{ minHeight: '100px' }} // Set initial height
           ></textarea>
         </div>
         <div className="form-group">
@@ -93,14 +103,16 @@ function AddProductForm() {
         <div className="form-group">
           <label>Image:</label>
           <input
-            type="file" // Set type to "file" for uploading files
-            accept="image/*" // Specify accepted file types
+            type="file"
+            accept="image/*"
             name="image"
             onChange={handleChange}
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Add Product</button>
+        <button type="submit" className="btn">
+          Add Product
+        </button>
       </form>
     </div>
   );

@@ -21,7 +21,7 @@ class BarChart extends Component {
       data: {
         labels: ['order', 'delivered', 'shipping', 'pending'],
         datasets: [{
-          label: 'Sales',
+          label: 'Orders',
           data: [65, 25, 20, 20],
           backgroundColor: 'rgba(255, 99, 132, 0.6)',
           borderColor: 'rgba(255, 99, 132, 1)',

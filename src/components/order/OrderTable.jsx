@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -10,6 +11,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { green, blue, orange } from '@mui/material/colors';
+import SearchIcon from '@mui/icons-material/Search';
+import './order.css'
 
 const columns = [
   { id: 'serial', label: 'S/No', minWidth: 50 },
@@ -34,6 +37,7 @@ const OrderTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(6);
   const [orders, setOrders] = useState([]);
+  const {user} = useContext(AuthContext)
 
   useEffect(() => {
     fetchOrders();
@@ -41,7 +45,7 @@ const OrderTable = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/order/farmer/6623d543cf48322887dd9d86');
+      const response = await axios.get(`http://localhost:4000/api/v1/order/farmer/${user._id}`);
       const { data } = response;
       console.log(data)
       if (Array.isArray(data.orders)) {
@@ -68,6 +72,7 @@ const OrderTable = () => {
       <div className='header'>
         <h1>Orders</h1>
         <div className='search'>
+          <div className='searchIcon'><SearchIcon /></div>
           <input type='text' placeholder='search' className="searchInput" />
         </div>
       </div>
@@ -93,7 +98,7 @@ const OrderTable = () => {
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{order.createdAt}</TableCell>
                   <TableCell>{order._id}</TableCell>
-                  <TableCell>{order.overallTotal}</TableCell>
+                  <TableCell>$ {order.overallTotal}</TableCell>
                 
                   <TableCell style={{ color: getStatusColor(order.orderStatus) }}>{order.orderStatus}</TableCell>
                 </TableRow>

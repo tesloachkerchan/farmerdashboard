@@ -6,7 +6,7 @@ import Center from "../../components/center/Center";
 export default function Home() {
   return (
     <>
-      <Topbar />
+      <Topbar /> 
       <div className="homeContainer">
         <Sidebar />
         <Center />

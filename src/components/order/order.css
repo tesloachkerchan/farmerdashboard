@@ -1,25 +1,26 @@
-.header{
+.header {
     display: flex;
     width: 100%;
 }
-.header h1{
-    padding: 15px;
+
+.header h1 {
+    padding: 10px;
 }
-.header .search{
+
+.header .search {
     width: 30%;
     margin-left: 600px;
-    margin-top: 10px;
+    padding: 15px;
     display: flex;
 }
-.searchInput{
-    border: 1px solid black;
+
+.searchInput {
+    border: none;
     height: 35px;
     border-radius: 5px;
     margin-left: 5px;
 }
-.searchIcon{
+
+.searchIcon {
     height: 35px;
-}
-.sidebarHr{
-    margin: 7px;
 }

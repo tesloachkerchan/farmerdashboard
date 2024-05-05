@@ -1,17 +1,5 @@
 .center{
     flex: 8;
     padding:0 15px;
-    overflow-y: scroll;
     position: sticky;
-}
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgb(180, 164, 164);
 }
