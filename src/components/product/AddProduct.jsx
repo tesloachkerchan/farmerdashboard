@@ -1,6 +1,8 @@
 import axios from 'axios';
 import './addproduct.css';
 import { useState, useContext } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../context/AuthContext';
 
 function AddProductForm() {
@@ -16,9 +18,16 @@ function AddProductForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('price', formData.price);
+      formDataToSend.append('availableQuantity', formData.availableQuantity);
+      formDataToSend.append('image', formData.image);
+
       const response = await axios.post(
         `http://localhost:4000/api/v1/products/${user._id}`,
-        formData
+        formDataToSend
       );
       console.log('Product added:', response.data);
       setFormData({
@@ -28,8 +37,7 @@ function AddProductForm() {
         availableQuantity: '',
         image: null,
       });
-      alert('Product added successfully');
-      window.location.href = '/productlist';
+      toast.success('Product added successfully');
     } catch (error) {
       console.error('Error adding product:', error);
     }
@@ -37,7 +45,11 @@ function AddProductForm() {
 
   const handleChange = (e) => {
     if (e.target.name === 'image') {
-      setFormData({ ...formData, image: e.target.files[0] });
+      // Check if a file is selected
+      if (e.target.files.length > 0) {
+        // Add the file to formData
+        setFormData({ ...formData, image: e.target.files[0] });
+      }
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -55,6 +67,7 @@ function AddProductForm() {
   return (
     <div className="add-product-container">
       <h2>Add Product</h2>
+      <ToastContainer position="top-center" autoClose={3000} />
       <form onSubmit={handleSubmit} className="add-product-form">
         <div className="form-group">
           <label>Name:</label>
