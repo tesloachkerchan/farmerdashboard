@@ -66,7 +66,8 @@ function EditProductForm() {
   };
 
   return (
-    <div className="edit-product-container">
+    <div className='center'>
+      <div className="edit-product-container">
       <h2>Edit Product</h2>
       <form onSubmit={handleSubmit} className="edit-product-form">
         <div className="form-group">
@@ -124,6 +125,7 @@ function EditProductForm() {
         </div>
         <button type="submit" className="btn-primary">Update Product</button>
       </form>
+    </div>
     </div>
   );
 }

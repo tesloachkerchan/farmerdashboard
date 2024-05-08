@@ -65,7 +65,8 @@ function AddProductForm() {
   };
 
   return (
-    <div className="add-product-container">
+    <div className='center'>
+      <div className="add-product-container">
       <h2>Add Product</h2>
       <ToastContainer position="top-center" autoClose={3000} />
       <form onSubmit={handleSubmit} className="add-product-form">
@@ -127,6 +128,7 @@ function AddProductForm() {
           Add Product
         </button>
       </form>
+    </div>
     </div>
   );
 }

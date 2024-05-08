@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import { green, blue, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
 import './order.css'
+import './orderTable.css'
 
 const columns = [
   { id: 'serial', label: 'S/No', minWidth: 50 },
@@ -67,8 +68,9 @@ const OrderTable = () => {
     setPage(0);
   };
 
-  return (
-    <Paper sx={{ width: '100%' }}>
+  return <>
+    <div className='orderTable'>
+      <Paper sx={{ width: '100%' }}>
       <div className='header'>
         <h1>Orders</h1>
         <div className='search'>
@@ -117,7 +119,8 @@ const OrderTable = () => {
         sx={{ justifyContent: 'center' }}
       />
     </Paper>
-  );
+    </div>
+  </>;
 };
 
 export default OrderTable;

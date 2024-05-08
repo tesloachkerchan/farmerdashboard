@@ -15,16 +15,7 @@ function Center() {
   const {user} = useContext(AuthContext)
   return (
     <div className='center'>
-          <Routes>
-        <Route path="/" element={user && user.role ==='farmer' ?<AdminHome />: <Login />} />
-        <Route path='/login' element={<Login />} />
-        <Route path="/productlist" element={<ColumnGroupingTable />} /> {/* Adjust path */}
-        <Route path="/order" element={<OrderTable />} />
-        <Route path="/order/:id" element={<OrderDetailPage />} />
-        <Route path="/product/detail/:id" element={<ProductDetailPage />} />
-        <Route path="/addproduct" element={<AddProductForm />} />
-        <Route path="/product/edit/:id" element={<EditProductForm />} />
-        </Routes>
+          <AdminHome />
     </div>
   );
 }

@@ -1,0 +1,5 @@
+.center {
+    flex: 8;
+    padding: 0 15px;
+    position: sticky;
+}

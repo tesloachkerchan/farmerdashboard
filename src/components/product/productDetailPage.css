@@ -1,3 +1,8 @@
+.center{
+    flex: 8;
+        padding: 0 15px;
+        position: sticky;
+}
 .product-detail-container {
     width: 70%;
     margin: 20px;

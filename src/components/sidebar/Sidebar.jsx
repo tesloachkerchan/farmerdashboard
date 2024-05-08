@@ -22,21 +22,21 @@ function Sidebar() {
           </li>
             </Link>
           <hr className='sidebarHr' />
-          <Link to='productlist'>
+          <Link to='/productlist'>
             <li className="sidebarListItem">
             <InventoryIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Product</span>
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='addproduct'>
+          <Link to='/addproduct'>
             <li className="sidebarListItem">
             <AddShoppingCartIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Add Product</span>
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='order'>
+          <Link to='/order'>
             <li className="sidebarListItem">
             <ViewListIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Order</span>

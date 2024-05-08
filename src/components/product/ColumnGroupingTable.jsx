@@ -119,7 +119,7 @@ export default function ColumnGroupingTable() {
                   <TableCell>{product.availableQuantity}</TableCell>
                   <TableCell>
                     <IconButton>
-                      <Link to={`/product/detail/${product._id}`}>
+                      <Link to={`/productlist/detail/${product._id}`}>
                         <VisibilityIcon style={{ color: blue[500] }} />
                       </Link>
                     </IconButton>

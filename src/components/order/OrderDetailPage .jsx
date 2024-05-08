@@ -53,7 +53,8 @@ const OrderDetailPage = () => {
   };
 
   return <>
-    <div className="order-detail-container">
+    <div className='center'>
+      <div className="order-detail-container">
       <h2 className="order-detail-title">Order Detail</h2>
       {order ? (
         <div className="order-detail-info">
@@ -97,6 +98,7 @@ const OrderDetailPage = () => {
             <input type="text" id="shippingCompany" value={shippingCompany} onChange={handleShippingCompanyChange} />
             <button type="submit">Update Order</button>
           </form>
+    </div>
     </div>
   </>;
 };
