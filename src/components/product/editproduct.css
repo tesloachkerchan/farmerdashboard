@@ -3,6 +3,10 @@
     padding: 0 15px;
     position: sticky;
 }
+.progress {
+    color: white;
+    size: 20px;
+}
 .edit-product-container {
     width: 70%;
     margin: auto;

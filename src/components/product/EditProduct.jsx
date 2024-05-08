@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { CircularProgress } from "@mui/material";
 import './editproduct.css';
 
 function EditProductForm() {
-    const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -31,6 +35,7 @@ function EditProductForm() {
         // You may want to handle the image separately based on your backend logic
         // For simplicity, this example does not include image handling
       });
+
     } catch (error) {
       console.error('Error fetching product:', error);
     }
@@ -38,6 +43,7 @@ function EditProductForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       // Send a PUT request to update the product with the new data
       const response = await axios.put(`http://localhost:4000/api/v1/products/${id}`, formData);
@@ -50,10 +56,12 @@ function EditProductForm() {
         availableQuantity: '',
         image: null,
       });
-        alert('Product edited successfully');
-         window.location.href = '/productlist';
+        toast.success('Product updated successfully');
     } catch (error) {
+      toast.error('Failed. Please try again later.');
       console.error('Error updating product:', error);
+    }finally {
+      setLoading(false); // Set loading back to false when request completes
     }
   };
 
@@ -67,6 +75,7 @@ function EditProductForm() {
 
   return (
     <div className='center'>
+      <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
       <div className="edit-product-container">
       <h2>Edit Product</h2>
       <form onSubmit={handleSubmit} className="edit-product-form">
@@ -123,7 +132,13 @@ function EditProductForm() {
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn-primary">Update Product</button>
+        {loading ? (
+            <div className="loading" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress className="progress" /></div>
+          ) : (
+            <button type="submit" className="btn-primary">
+              Add Product
+            </button>
+          )}
       </form>
     </div>
     </div>

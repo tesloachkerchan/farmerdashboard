@@ -95,7 +95,7 @@ const OrderTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders.map((order, index) => (
+            {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order, index) => (
                 <TableRow hover role="checkbox" tabIndex={-1} key={order._id} component={Link} to={`/order/${order._id}`}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{order.createdAt}</TableCell>
