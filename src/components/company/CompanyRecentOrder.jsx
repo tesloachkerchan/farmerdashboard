@@ -39,7 +39,7 @@ const RecentOrder = () => {
 
   const fetchRecentOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order/farmer/${user._id}`);
+      const response = await axios.get(`http://localhost:4000/api/v1/order/transportation/${user._id}`);
       setOrders(response.data.orders);
     } catch (error) {
       console.error('Error fetching recent orders:', error);
@@ -47,7 +47,8 @@ const RecentOrder = () => {
   };
 
   return (
-    <Paper sx={{ width: '100%' }}>
+    <div className='center'>
+        <Paper sx={{ width: '100%' }}>
       <div className='header'>
         <h1>Recent Orders</h1>
       </div>
@@ -69,7 +70,7 @@ const RecentOrder = () => {
           </TableHead>
           <TableBody>
             {orders.slice(0, 2).map((order, index) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={order._id} component={Link} to={`/order/${order._id}`}>
+              <TableRow hover role="checkbox" tabIndex={-1} key={order._id} component={Link} to={`/companyorder/${order._id}`}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{order.createdAt}</TableCell>
                 <TableCell>$ {order.overallTotal}</TableCell>
@@ -79,7 +80,8 @@ const RecentOrder = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Paper>
+    </Paper>  
+    </div>
   );
 };
 

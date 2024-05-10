@@ -97,10 +97,22 @@ const OrderDetailPage = () => {
           <div className="order-detail-info">
             <p><strong>Order ID:</strong> {id}</p>
             <p><strong>Buyer ID:</strong> {order.buyerId}</p>
+            {order.buyerContactDetails && order.buyerContactDetails.address && (
+              <p><strong>Buyer Address:</strong> {order.buyerContactDetails.address}</p>
+            )}
+            {order.buyerContactDetails && order.buyerContactDetails.phone && (
+              <p><strong>Buyer Phone:</strong> {order.buyerContactDetails.phone}</p>
+            )}
             <p><strong>Overall Total:</strong> ${order.overallTotal}</p>
             <p><strong>Order Status:</strong> {order.orderStatus}</p>
             {order.transportationDetails && order.transportationDetails.estimatedDeliveryDate && (
-              <p><strong>Shipping Date:</strong> {order.transportationDetails.estimatedDeliveryDate}</p>
+              <p><strong>Estimation Delivery Date:</strong> {order.transportationDetails.estimatedDeliveryDate}</p>
+            )}
+            {order.transportationDetails && order.transportationDetails.DeliveryDate && (
+              <p><strong>Delivery Date:</strong> {order.transportationDetails.DeliveryDate}</p>
+            )}
+            {order.transportationDetails && order.transportationDetails.shippingDate && (
+              <p><strong>Shipping Date:</strong> {order.transportationDetails.shippingDate}</p>
              )}
             <p><strong>Created At:</strong> {order.createdAt}</p>
             <p><strong>Updated At:</strong> {order.updatedAt}</p>
@@ -109,10 +121,13 @@ const OrderDetailPage = () => {
               <ul>
                 {order.products.map((product) => (
                   <li key={product._id}>
+                    Product Name: {product.productName}<br />
                     Product ID: {product.productId}<br />
-                    Farmer ID: {product.farmerId}<br />
+                    Price: {product.ProductPrice}<br />
                     Quantity: {product.quantity}<br />
                     Total Price: ${product.totalPrice}
+                    Farmer ID: {product.farmerId}<br />
+                    Product Owner: {product.farmerName}<br />
                   </li>
                 ))}
               </ul>
@@ -134,7 +149,7 @@ const OrderDetailPage = () => {
             {order && order.orderStatus === 'shipping' && <option value="delivered">Delivered</option>}
           </select>
             <div>
-              <label htmlFor="shippingDate">Shipping Date:</label>
+              <label htmlFor="shippingDate">EstimationDelivery Date:</label>
               <input type="date" id="shippingDate" value={shippingDate} onChange={handleShippingDateChange} />
               <label htmlFor="shippingCompany">Shipping Company:</label>
               <select id="shippingCompany" value={shippingCompany} onChange={handleShippingCompanyChange}>
