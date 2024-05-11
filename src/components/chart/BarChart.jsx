@@ -9,6 +9,12 @@ class BarChart extends Component {
     this.buildChart();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.counts !== this.props.counts) {
+      this.updateChart();
+    }
+  }
+
   componentWillUnmount() {
     this.destroyChart();
   }
@@ -19,10 +25,10 @@ class BarChart extends Component {
     this.chartInstance = new Chart(myChartRef, {
       type: 'bar',
       data: {
-        labels: ['order', 'delivered', 'shipping', 'pending'],
+        labels: ['Pending', 'Shipping', 'Delivered', 'Processing'], // Adjust labels as needed
         datasets: [{
           label: 'Orders',
-          data: [65, 25, 20, 20],
+          data: this.props.counts, // Use counts from props
           backgroundColor: 'rgba(255, 99, 132, 0.6)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1
@@ -36,6 +42,11 @@ class BarChart extends Component {
         }
       }
     });
+  }
+
+  updateChart() {
+    this.chartInstance.data.datasets[0].data = this.props.counts;
+    this.chartInstance.update();
   }
 
   destroyChart() {

@@ -28,12 +28,17 @@ const ProductDetailPage = () => {
       <h2 className="product-detail-title">Product Detail</h2> {/* Add a class for styling */}
       {product ? (
         <div className="product-detail-info"> {/* Add a class for styling */}
-          <p><strong>Name:</strong> {product.name}</p>
-          <p><strong>Price:</strong> ${product.price}</p>
-          <p><strong>Available Quantity:</strong> {product.availableQuantity}</p>
-          <p><strong>Farmer ID:</strong> {product.farmerId}</p>
-          <p><strong>Created At:</strong> {product.createdAt}</p>
-          <p><strong>Updated At:</strong> {product.updatedAt}</p>
+          <div className="product-detail-header">
+            <img src={product.image} alt={product.name} className="product-image" />
+            <div className="product-header-details">
+              <p><strong>Name:</strong> {product.name}</p>
+              <p><strong>Price:</strong> ${product.price}</p>
+              <p><strong>Available Quantity:</strong> {product.availableQuantity}</p>
+              <p><strong>Farmer ID:</strong> {product.farmerId}</p>
+              <p><strong>Created At:</strong> {product.createdAt}</p>
+              <p><strong>Updated At:</strong> {product.updatedAt}</p>
+            </div>
+          </div>
           <div className="description-container"> {/* Container specifically for the description */}
             <strong>Description:</strong>
             <p className="description">{product.description}</p>

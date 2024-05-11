@@ -29,6 +29,7 @@ function Sidebar() {
             <span className="sidebarListItemText">Order</span>
           </li>
           </Link>
+          <hr className='sidebarHr' />
         </ul>
       </div>
     </div>

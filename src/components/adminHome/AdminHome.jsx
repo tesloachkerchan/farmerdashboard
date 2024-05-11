@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import BarChart from '../chart/BarChart'
-import './adminhome.css'
+import BarChart from '../chart/BarChart';
 import RecentOrder from '../order/RecentOrder';
 import axios from 'axios';
-import { useEffect, useState, useContext } from 'react';
+import './adminhome.css';
 import { AuthContext } from '../../context/AuthContext';
 
 function AdminHome() {
   const [totalProduct, setTotalProduct] = useState(0);
   const [totalOrder, setTotalOrder] = useState(0);
   const [earned, setEarned] = useState(0);
-  const {user} = useContext(AuthContext)
+  const [orderCounts, setOrderCounts] = useState([0, 0, 0, 0]); // Initial counts
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetchProducts();
+    fetchOrders();
+    fetchEarned();
+    fetchOrderCounts();
   }, []);
 
   const fetchProducts = async () => {
@@ -29,75 +33,78 @@ function AdminHome() {
       console.error('Error fetching products:', error);
     }
   };
-  useEffect(() => {
-    fetchOrders();
-  }, []);
 
   const fetchOrders = async () => {
     try {
       const response = await axios.get(`http://localhost:4000/api/v1/order/total/farmer/${user._id}`);
       const orders = response.data;
-      console.log(orders)
-      const OrderCount =orders.length
-
-      setTotalOrder(OrderCount);
+      const orderCount = orders.length;
+      setTotalOrder(orderCount);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
   };
-  useEffect(() => {
-    fetchEarned();
-  }, []);
 
   const fetchEarned = async () => {
     try {
       const response = await axios.get(`http://localhost:4000/api/v1/order/earnings/farmer/${user._id}`);
-      const earned = response.data;
-      setEarned(earned);
+      const earnedAmount = response.data;
+      setEarned(earnedAmount);
     } catch (error) {
-      console.error('Error fetching orders:', error);
+      console.error('Error fetching earnings:', error);
     }
   };
+
+  const fetchOrderCounts = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/api/v1/order/farmer/${user._id}/order-counts`);
+      const counts = response.data;
+      const { pendingCount, shippingCount, deliveredCount, processingCount } = counts;
+      setOrderCounts([pendingCount, shippingCount, deliveredCount, processingCount]);
+    } catch (error) {
+      console.error('Error fetching order counts:', error);
+    }
+  };
+
   return (
     <div className='admin'>
       <div className='header'>
         <h1>Farmer Dashboard</h1>
       </div>
       <hr className='sidebarHr' />
-       <div className="box-info">
-          <li>
-            <i className="fas fa-calendar-check"><InventoryIcon/></i>
-            <span className="text">
-              <h3>{totalProduct}</h3>
-              <p>Products</p>
-            </span>
-          </li>
-          <li>
-            <i className="fas fa-people-group"><ViewListIcon /></i>
-            <span className="text">
-              <h3>{earned}M</h3>
-              <p>Earning</p>
-            </span>
-          </li>
-          <li>
-            <i className="fas fa-dollar-sign"><AddShoppingCartIcon/></i>
-            <span className="text">
-              <h3>{totalOrder}</h3>
-              <p>Orders</p>
-            </span>
-          </li>
-        </div>
+      <div className="box-info">
+        <li>
+          <i className="fas fa-calendar-check"><InventoryIcon /></i>
+          <span className="text">
+            <h3>{totalProduct}</h3>
+            <p>Products</p>
+          </span>
+        </li>
+        <li>
+          <i className="fas fa-people-group"><ViewListIcon /></i>
+          <span className="text">
+            <h3>{earned}M</h3>
+            <p>Earning</p>
+          </span>
+        </li>
+        <li>
+          <i className="fas fa-dollar-sign"><AddShoppingCartIcon /></i>
+          <span className="text">
+            <h3>{totalOrder}</h3>
+            <p>Orders</p>
+          </span>
+        </li>
+      </div>
       <div className='center'>
         <div className='chart'>
-        <BarChart />
+          <BarChart counts={orderCounts} />
         </div>
         <div className='recentorder'>
           <RecentOrder />
         </div>
-        
       </div>
     </div>
-  )
+  );
 }
 
-export default AdminHome
+export default AdminHome;

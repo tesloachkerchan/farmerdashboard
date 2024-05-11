@@ -4,6 +4,7 @@ import { useState, useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from "@mui/material";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { AuthContext } from '../../context/AuthContext';
 
 function AddProductForm() {
@@ -50,16 +51,35 @@ function AddProductForm() {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === 'image') {
-      // Check if a file is selected
-      if (e.target.files.length > 0) {
-        // Add the file to formData
-        setFormData({ ...formData, image: e.target.files[0] });
+  if (e.target.name === 'image') {
+    // Check if a file is selected
+    if (e.target.files.length > 0) {
+      // Add the file to formData
+      setFormData({ ...formData, image: e.target.files[0] });
+
+      // Hide the label
+      const label = document.getElementById('image-label');
+      if (label) {
+        label.style.display = 'none';
       }
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+
+      // Display the selected image
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imagePreview = document.getElementById('image-preview');
+        if (imagePreview) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
-  };
+  } else {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+};
+
+
 
   const handleTextareaChange = (e) => {
     // Auto-resize textarea based on content
@@ -76,6 +96,22 @@ function AddProductForm() {
         <h2>Add Product</h2>
         <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         <form onSubmit={handleSubmit} className="add-product-form">
+          <div className="form-group">
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={handleChange}
+              style={{ display: 'none' }}
+            />
+  
+            <label htmlFor="image" id="image-label" className="custom-file-upload">
+              <CloudUploadIcon className='icon' />
+             </label>
+             {/* Image preview */}
+            <img id="image-preview" alt="Selected" style={{ display: 'none' }} />
+          </div>
           <div className="form-group">
             <label>Name:</label>
             <input
@@ -117,16 +153,6 @@ function AddProductForm() {
               value={formData.availableQuantity}
               onChange={handleChange}
               required
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label>Image:</label>
-            <input
-              type="file"
-              accept="image/*"
-              name="image"
-              onChange={handleChange}
               className="form-control"
             />
           </div>
