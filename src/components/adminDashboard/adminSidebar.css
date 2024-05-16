@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     flex: 2;
     height: calc(100vh - 50px);
     position: sticky;
@@ -6,15 +6,17 @@
     border-right: 1px solid rgb(147, 143, 143);
 }
 
-.sidebarWrapper{
+.sidebarWrapper {
     padding: 20px;
 }
-.sidebarList{
+
+.sidebarList {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-.sidebar.sidebarAvatar{
+
+.sidebar.sidebarAvatar {
     margin: 0;
     width: 100%;
     height: 200px;
@@ -22,40 +24,48 @@
     background: #f9f9f9;
     cursor: pointer;
 }
-.sidebar .sidebarAvatar h3{
+
+.sidebar .sidebarAvatar h3 {
     margin-top: 0;
     color: white;
     cursor: pointer;
 }
-.sidebarListItem{
+
+.sidebarListItem {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
-.sidebarIcon{
+
+.sidebarIcon {
     margin-right: 15px;
 }
-.sidebarButton{
+
+.sidebarButton {
     width: 150px;
     border: none;
     padding: 10px;
     border-radius: 5px;
     font-weight: 500;
 }
-.sidebarHr{
+
+.sidebarHr {
     margin: 5px 0;
 }
-.sidebarFriendList{
+
+.sidebarFriendList {
     padding: 0;
     margin: 0;
     list-style: none;
 }
-.sidebarFriend{
+
+.sidebarFriend {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
-.sidebarFriendImg{
+
+.sidebarFriendImg {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -63,6 +73,7 @@
     cursor: pointer;
     margin-right: 10px;
 }
+
 .sidebarAvatar {
     align-items: center;
 }

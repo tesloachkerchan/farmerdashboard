@@ -1,15 +1,17 @@
 import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import PersonIcon from '@mui/icons-material/Person';
+import AddIcon from '@mui/icons-material/Add';
+import PeopleIcon from '@mui/icons-material/People';
+import AgricultureIcon from '@mui/icons-material/Agriculture';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { AuthContext } from '../../context/AuthContext';
-import './sidebar.css';
+import './adminSidebar.css';
 
-function Sidebar() {
+function AdminSidebar() {
   const { user } = useContext(AuthContext)
   return (
     <div className='sidebar'>
@@ -26,31 +28,45 @@ function Sidebar() {
           </li>
             </Link>
           <hr className='sidebarHr' />
-          <Link to='/productlist'>
+          <Link to='/allproduct'>
             <li className="sidebarListItem">
             <InventoryIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Product</span>
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='/addproduct'>
-            <li className="sidebarListItem">
-            <AddShoppingCartIcon className='sidebarIcon'/>
-            <span className="sidebarListItemText">Add Product</span>
-          </li>
-          </Link>
-          <hr className='sidebarHr' />
-          <Link to='/order'>
+          <Link to='/adminorder'>
             <li className="sidebarListItem">
             <ViewListIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Order</span>
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='/order'>
+          <Link to='/farmer'>
             <li className="sidebarListItem">
-            <PersonIcon className='sidebarIcon'/>
+            <AgricultureIcon className='sidebarIcon'/>
+            <span className="sidebarListItemText">Farmer</span>
+          </li>
+          </Link>
+          <hr className='sidebarHr' />
+          <Link to='/buyer'>
+            <li className="sidebarListItem">
+            <PeopleIcon className='sidebarIcon'/>
+            <span className="sidebarListItemText">Buyer</span>
+          </li>
+          </Link>
+          <hr className='sidebarHr' />
+          <Link to='/company'>
+            <li className="sidebarListItem">
+            <LocalShippingIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Company</span>
+          </li>
+          </Link>
+          <hr className='sidebarHr' />
+          <Link to='/addproduct'>
+            <li className="sidebarListItem">
+            <AddIcon className='sidebarIcon'/>
+            <span className="sidebarListItemText">Blog</span>
           </li>
           </Link>
           <hr className='sidebarHr' />
@@ -60,4 +76,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default AdminSidebar;

@@ -13,6 +13,14 @@ import EditProductPage from './pages/products/EditProductPage';
 import CompanyPage from './pages/company/CompanyPage';
 import CompanyOrderDetailPage from './pages/company/CompanyOrderDetailPage';
 import LandingPage from './pages/company/LandingPage';
+import AdminHomePage from './pages/admin/AdminHomePage';
+import AdminProduct from './pages/admin/AdminProduct';
+import AdminProductDetail from './pages/admin/AdminProductDetail';
+import AdminOrderPage from './pages/admin/AdminOrderPage';
+import AdminOrderDetailPage from './pages/admin/AdminOrderDetailPage';
+import FarmerPage from './pages/admin/FarmerPage';
+import BuyerPage from './pages/admin/BuyerPage';
+import AdminCompanyPage from './pages/admin/AdminCompanyPage';
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -21,23 +29,35 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path="/"
-        element={
-          user ? (
-            user.role === 'farmer' ? (
-              <Home />
-            ) : (
-              <LandingPage />
-            )
-          ) : (
-            <Login />
-          )
-        } />
+        <Route
+  path="/"
+  element={
+    user ? (
+      user.role === 'admin' ? (
+        <AdminHomePage />
+      ) : user.role === 'farmer' ? (
+        <Home /> // or whatever page you want farmers to be directed to
+      ) : (
+        <LandingPage />
+      )
+    ) : (
+      <Login />
+    )
+  }
+/>
+
         <Route path="/login" element={<Login />} />
         <Route path="/productlist" element={user && user.role === 'farmer' ? <ProductPage /> : <Login />} />
+        <Route path="/allproduct" element={user && user.role === 'admin' ? <AdminProduct /> : <Login />} />
         <Route path="/productlist/detail/:id" element={user && user.role === 'farmer' ? <ProductDetailPage /> : <Login />} />
+        <Route path="/Adminproduct/detail/:id" element={user && user.role === 'admin' ? <AdminProductDetail /> : <Login />} />
         <Route path="/order/:id" element={user && user.role === 'farmer' ? <OrderDetail /> : <Login />} />
+        <Route path="/adminorder/:id" element={user && user.role === 'admin' ? <AdminOrderDetailPage /> : <Login />} />
         <Route path="/companyorder/:id" element={user && user.role === 'transportation' ? <CompanyOrderDetailPage /> : <Login />} />
+        <Route path="/adminorder" element={user && user.role === 'admin' ? <AdminOrderPage /> : <Login />} />
+        <Route path="/farmer" element={user && user.role === 'admin' ? <FarmerPage /> : <Login />} />
+        <Route path="/buyer" element={user && user.role === 'admin' ? <BuyerPage /> : <Login />} />
+        <Route path="/company" element={user && user.role === 'admin' ? <AdminCompanyPage /> : <Login />} />
         <Route path="/order" element={user && user.role === 'farmer' ? <OrderPage /> : <Login />} />
         <Route path="/companyorder" element={user && user.role === 'transportation' ? <CompanyPage  /> : <Login />} />
         <Route path="/addproduct" element={user && user.role === 'farmer' ? <AddProuductPage /> : <Login />} />

@@ -25,10 +25,18 @@
     --orange: #fd7238;
     --light-orange: #ffe0d3;
 }
-.admin{
-    width: 100%;
+.main{
+    flex: 8;
+    padding: 0 15px;
     position: sticky;
 }
+.admin {
+    width: 100%;
+    position: sticky;
+    margin: 0;
+    padding: 0;
+}
+
 .box-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -84,20 +92,30 @@
 .box-info li .text p {
     color: var(--dark);
 }
-.center{
+
+.center {
     display: flex;
     margin-top: 20px;
 }
-.chart{
+
+.liechart {
     margin: 15px;
-    width: 50%;
+    width: 100%;
     height: 100%;
     flex: 5;
-    margin-top: 20px;
-    padding: 33px;
+    margin-top: 30px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    padding: -200px 0;
 }
-.recentorder{
+.piechart {
+    margin: 15px;
+    width: 100%;
+    height: 100%;
     flex: 5;
-    padding:15px;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 5px;
 }

@@ -71,7 +71,7 @@
 }
 
 .topbarIconItem {
-    margin-right: 15px;
+    margin-right: 20px;
     cursor: pointer;
     position: relative;
 }
@@ -97,4 +97,6 @@
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
+    margin-left: 10px;
+    
 }
