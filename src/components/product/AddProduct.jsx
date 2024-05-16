@@ -43,8 +43,12 @@ function AddProductForm() {
       });
       toast.success('Product added successfully');
     } catch (error) {
-      toast.error('Failed. Please try again later.');
-      console.error('Error adding product:', error);
+      if (error.response && error.response.status === 403) {
+        // Handle case where farmer is not found or not active
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('Failed. Please try again later.');
+      }
     } finally {
       setLoading(false); // Set loading back to false when request completes
     }

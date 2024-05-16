@@ -1,0 +1,38 @@
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.farmerProfile {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.profileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profileContent {
+    display: flex;
+}
+
+.profileImage {
+    margin-right: 20px;
+}
+
+.profileImage img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.profileDetails {
+    flex: 1;
+}
+
+.profileActions {
+    margin-top: 20px;
+}

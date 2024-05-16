@@ -12,6 +12,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { green, blue, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
+import { toast, ToastContainer } from 'react-toastify';
 import './order.css'
 import './orderTable.css'
 
@@ -55,7 +56,12 @@ const OrderTable = () => {
         console.error('Invalid data format for orders:', data);
       }
     } catch (error) {
-      console.error('Error fetching orders:', error);
+      if (error.response && error.response.status === 403) {
+        // Handle case where farmer is not found or not active
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('Failed. Please try again later.');
+      }
     }
   };
 
@@ -72,7 +78,8 @@ const OrderTable = () => {
     <div className='orderTable'>
       <Paper sx={{ width: '100%' }}>
       <div className='header'>
-        <h1>Orders</h1>
+          <h1>Orders</h1>
+           <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         <div className='search'>
           <div className='searchIcon'><SearchIcon /></div>
           <input type='text' placeholder='search' className="searchInput" />

@@ -21,6 +21,9 @@ import AdminOrderDetailPage from './pages/admin/AdminOrderDetailPage';
 import FarmerPage from './pages/admin/FarmerPage';
 import BuyerPage from './pages/admin/BuyerPage';
 import AdminCompanyPage from './pages/admin/AdminCompanyPage';
+import FarmerProfilePage from './pages/admin/FarmerProfilePage';
+import BuyerProfilePage from './pages/admin/BuyerProfilePage';
+import CompanyProfilePage from './pages/admin/CompanyProfilePage';
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -62,6 +65,9 @@ function App() {
         <Route path="/companyorder" element={user && user.role === 'transportation' ? <CompanyPage  /> : <Login />} />
         <Route path="/addproduct" element={user && user.role === 'farmer' ? <AddProuductPage /> : <Login />} />
         <Route path="/product/edit/:id" element={user && user.role === 'farmer' ? <EditProductPage /> : <Login />} />
+        <Route path="/farmerprofile/:id" element={user && user.role === 'admin' ? <FarmerProfilePage /> : <Login />} />
+          <Route path="/buyerprofile/:id" element={user && user.role === 'admin' ? <BuyerProfilePage /> : <Login />} />
+        <Route path="/companyprofile/:id" element={user && user.role === 'admin' ? <CompanyProfilePage /> : <Login />} />
         
         </Routes>
       </BrowserRouter>

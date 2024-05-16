@@ -10,9 +10,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { green, red, blue } from '@mui/material/colors';
+import { red, blue } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
 import './product.css';
 import { Link } from 'react-router-dom';
@@ -121,11 +120,6 @@ export default function ColumnGroupingTable() {
                     <IconButton>
                       <Link to={`/adminproduct/detail/${product._id}`}>
                         <VisibilityIcon style={{ color: blue[500] }} />
-                      </Link>
-                    </IconButton>
-                    <IconButton>
-                      <Link to={`/product/edit/${product._id}`}>
-                        <EditIcon style={{ color: green[500] }} />
                       </Link>
                     </IconButton>
                     <IconButton onClick={() => handleDelete(product._id)}>

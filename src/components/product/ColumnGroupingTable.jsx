@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios'; // Import Axios
+import { toast, ToastContainer } from 'react-toastify';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -65,9 +66,15 @@ export default function ColumnGroupingTable() {
       try {
         await axios.delete(`http://localhost:4000/api/v1/products/${user._id}/${productId}`);
         // Refresh the products list after deletion
+        toast.success('Product deleted successfully');
         fetchProducts();
       } catch (error) {
-        console.error('Error deleting product:', error);
+        if (error.response && error.response.status === 403) {
+        // Handle case where farmer is not found or not active
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('Failed. Please try again later.');
+      }
       }
     }
   };
@@ -81,6 +88,7 @@ export default function ColumnGroupingTable() {
     <Paper sx={{ width: '100%' }}>
       <div className='header'>
         <h1>Products</h1>
+         <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         <div className='search'>
           <div className='searchIcon'><SearchIcon /></div>
           <input

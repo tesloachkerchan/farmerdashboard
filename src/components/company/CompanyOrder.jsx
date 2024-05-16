@@ -2,6 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -53,7 +54,12 @@ const OrderTable = () => {
         console.error('Invalid data format for orders:', data);
       }
     } catch (error) {
-      console.error('Error fetching orders:', error);
+      if (error.response && error.response.status === 403) {
+        // Handle case where farmer is not found or not active
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('Failed. Please try again later.');
+      }
     }
   };
 
@@ -70,7 +76,8 @@ const OrderTable = () => {
     <div className='orderTable'>
       <Paper sx={{ width: '100%' }}>
       <div className='header'>
-        <h1>Orders</h1>
+          <h1>Orders</h1>
+           <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         <div className='search'>
           <div className='searchIcon'><SearchIcon /></div>
           <input type='text' placeholder='search' className="searchInput" />

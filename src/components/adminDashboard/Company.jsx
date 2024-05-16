@@ -1,6 +1,7 @@
 // AdminTransportationCompany.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { blue } from '@mui/material/colors';
+import { green, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
 import './adminOrder.css';
 
@@ -21,6 +22,9 @@ const columns = [
     { id: 'phone', label: 'Phone', minWidth: 100 },
     { id: 'address', label: 'Address', minWidth: 100 },
 ];
+const getStatusColor = (status) => {
+    return status === 'active' ? green[500] : orange[500];
+};
 
 const Company = () => {
     const [page, setPage] = useState(0);
@@ -83,13 +87,17 @@ const Company = () => {
                         </TableHead>
                         <TableBody>
                             {companies.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((company, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={company._id}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={company._id} component={Link} to={`/companyprofile/${company._id}`}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{company.name}</TableCell>
-                                    <TableCell>{company.location}</TableCell>
                                     <TableCell>{company.email}</TableCell>
                                     <TableCell>{company.contactDetails.phone}</TableCell>
                                     <TableCell>{company.contactDetails.address}</TableCell>
+                                    <TableCell>
+                                        <span style={{ color: getStatusColor(company.status) }}>
+                                            {company.status}
+                                        </span>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

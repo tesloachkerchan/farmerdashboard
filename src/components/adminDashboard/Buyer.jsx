@@ -1,4 +1,3 @@
-// AdminBuyer.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
@@ -9,8 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { blue } from '@mui/material/colors';
+import { green, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
 import './adminOrder.css';
 
 const columns = [
@@ -18,8 +18,12 @@ const columns = [
     { id: 'name', label: 'Name', minWidth: 100 },
     { id: 'email', label: 'Email', minWidth: 100 },
     { id: 'phone', label: 'Phone', minWidth: 100 },
-    { id: 'address', label: 'Address', minWidth: 100 },
+    { id: 'status', label: 'Status', minWidth: 100 },
 ];
+
+const getStatusColor = (status) => {
+    return status === 'active' ? green[500] : orange[500];
+};
 
 const Buyer = () => {
     const [page, setPage] = useState(0);
@@ -82,12 +86,16 @@ const Buyer = () => {
                         </TableHead>
                         <TableBody>
                             {buyers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((buyer, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={buyer._id}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={buyer._id} component={Link} to={`/buyerprofile/${buyer._id}`}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{buyer.name}</TableCell>
                                     <TableCell>{buyer.email}</TableCell>
                                     <TableCell>{buyer.contactDetails.phone}</TableCell>
-                                    <TableCell>{buyer.contactDetails.address}</TableCell>
+                                    <TableCell>
+                                        <span style={{ color: getStatusColor(buyer.status) }}>
+                                            {buyer.status}
+                                        </span>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

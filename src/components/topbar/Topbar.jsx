@@ -1,23 +1,32 @@
-import './topbar.css'
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import {AuthContext} from '../../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext';
+import './topbar.css';
+
 export default function Topbar() {
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleLogout = () => {
+    // Implement logout functionality
+  };
+
   return (
     <div className='topbarContainer'>
       <div className="topbarLeft">
-        <Link to='/' style={{textDecoration:'none'}}>
+        <Link to='/' style={{ textDecoration: 'none' }}>
           <span className='logo'>AgriConnect</span>
         </Link>
       </div>
-      <div className="topbarCenter">
-        
-      </div>
+      <div className="topbarCenter"></div>
       <div className="topbarRight">
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -29,10 +38,21 @@ export default function Topbar() {
             <span className="topbarIconBadge">9+</span>
           </div>
         </div>
-        <Link to='/'>
-           <img src='https://i.ibb.co/4pDNDk1/avatar.png' alt="" className="topbarImg" />
-        </Link>
+        <div className="profileMenu">
+          <img 
+            src='https://i.ibb.co/4pDNDk1/avatar.png' 
+            alt="" 
+            className="topbarImg" 
+            onClick={toggleDropdown}
+          />
+          {dropdownVisible && (
+            <div className="dropdownMenu">
+              <Link to='/profile' className="dropdownItem">Profile</Link>
+              <span className="dropdownItem" onClick={handleLogout}>LogOut</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  )
+  );
 }
