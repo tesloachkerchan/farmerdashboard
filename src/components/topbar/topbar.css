@@ -122,5 +122,6 @@
 }
 
 .dropdownItem:hover {
-    background-color: #f0f0f0;
+    background-color: #363434;
+    color: white;
 }

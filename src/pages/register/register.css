@@ -1,4 +1,4 @@
-.login {
+.register {
   width: 50vw;
   height: 100vh;
   margin-left: 340px;
@@ -7,14 +7,14 @@
   justify-content: center;
 }
 
-.loginWrapper {
+.registerWrapper {
   width: 70%;
   height: 70%;
   display: flex;
   justify-content: center;
 }
 
-.loginForm {
+.registerForm {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   border-radius: 10px;
 }
 
-.loginBox {
+.registerBox {
   padding: 20px;
   background-color: white;
   border: 1px solid #ccc;
@@ -33,13 +33,13 @@
   gap: 10px;
 }
 
-.loginLabel {
+.registerLabel {
   font-size: 14px;
   font-weight: 600;
   color: #00695c;
 }
 
-.loginInput {
+.registerInput {
   height: 40px;
   border-radius: 5px;
   border: 1px solid gray;
@@ -47,12 +47,12 @@
   padding-left: 10px;
 }
 
-.loginInput:focus {
+.registerInput:focus {
   outline: none;
   border-color: #00695c;
 }
 
-.loginButton {
+.registerButton {
   height: 40px;
   border-radius: 5px;
   border: none;
@@ -63,11 +63,11 @@
   cursor: pointer;
 }
 
-.loginButton:focus {
+.registerButton:focus {
   outline: none;
 }
 
-.loginRegisterButton {
+.loginRedirectButton {
   width: 100%;
   margin-top: 10px;
   height: 40px;
@@ -80,17 +80,6 @@
   cursor: pointer;
 }
 
-.loginRegisterButton:focus {
+.loginRedirectButton:focus {
   outline: none;
-}
-
-.progress {
-  color: white;
-  size: 20px;
-}
-
-.loginForgot {
-  text-align: center;
-  color: black;
-  font-size: 14px;
 }

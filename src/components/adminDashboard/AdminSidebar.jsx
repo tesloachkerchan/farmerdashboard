@@ -63,7 +63,7 @@ function AdminSidebar() {
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='/addproduct'>
+          <Link to='/addblog'>
             <li className="sidebarListItem">
             <AddIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Blog</span>

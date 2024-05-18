@@ -7,7 +7,7 @@ export default function BasicPie() {
       series={[
         {
           data: [
-            { id: 0, value: 10, label: 'Company' },
+            { id: 0, value: 10, label: 'Company',color: 'teal'  },
             { id: 1, value: 15, label: 'Farmer' },
             { id: 2, value: 20, label: 'Buyer' },
           ],

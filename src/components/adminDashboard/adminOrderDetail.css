@@ -64,7 +64,7 @@
 }
 
 .order-processing-form button {
-    background-color: #4caf50;
+    background-color: teal;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -73,5 +73,5 @@
 }
 
 .order-processing-form button:hover {
-    background-color: #45a049;
+    background-color: rgb(1, 114, 114);
 }

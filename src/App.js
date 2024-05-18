@@ -24,6 +24,11 @@ import AdminCompanyPage from './pages/admin/AdminCompanyPage';
 import FarmerProfilePage from './pages/admin/FarmerProfilePage';
 import BuyerProfilePage from './pages/admin/BuyerProfilePage';
 import CompanyProfilePage from './pages/admin/CompanyProfilePage';
+import Blog from './pages/blog/BlogPage';
+import Single from './pages/single/Single'
+import Write from './pages/write/Write'
+import Settings from './pages/settings/Settings';
+import Register from './pages/register/Register'
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -66,9 +71,13 @@ function App() {
         <Route path="/addproduct" element={user && user.role === 'farmer' ? <AddProuductPage /> : <Login />} />
         <Route path="/product/edit/:id" element={user && user.role === 'farmer' ? <EditProductPage /> : <Login />} />
         <Route path="/farmerprofile/:id" element={user && user.role === 'admin' ? <FarmerProfilePage /> : <Login />} />
-          <Route path="/buyerprofile/:id" element={user && user.role === 'admin' ? <BuyerProfilePage /> : <Login />} />
+        <Route path="/buyerprofile/:id" element={user && user.role === 'admin' ? <BuyerProfilePage /> : <Login />} />
         <Route path="/companyprofile/:id" element={user && user.role === 'admin' ? <CompanyProfilePage /> : <Login />} />
-        
+        <Route path="/blog" element={user ? <Blog /> : <Login />} />
+        <Route path="/blog/:id" element={user ? <Single /> : <Login />} />
+        <Route path="/addblog" element={user ? <Write /> : <Login />} />
+        <Route path="/setting/:id" element={user  ? <Settings /> : <Login />} />
+        <Route path="/register" element={<Register /> } />
         </Routes>
       </BrowserRouter>
       

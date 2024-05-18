@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import './productDetail.css'; // Import your CSS file for styling
 
@@ -33,8 +34,14 @@ const BuyerProfile = () => {
         // Update local state if request is successful
         setBuyer(prevFarmer => [{ ...prevFarmer[0], status: newStatus }]);
       }
+      toast.success('status updated successfully');
     } catch (error) {
-      console.error('Error toggling status:', error);
+      if (error.response && error.response.status === 403) {
+        // Handle case where farmer is not found or not active
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('Failed. Please try again later.');
+      }
     }
   };
 
@@ -42,6 +49,7 @@ const BuyerProfile = () => {
     <div className='center'>
       <div className="product-detail-container">
         <h2 className="product-detail-title">Buyer Profile</h2>
+         <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         {loading ? (
           <p>Loading...</p>
         ) : buyer ? (
@@ -68,7 +76,7 @@ const BuyerProfile = () => {
   onClick={handleStatusToggle}
   style={{
     padding: '10px 20px',
-    backgroundColor: buyer[0].status === 'active' ? '#ff6347' : '#90ee90',
+    backgroundColor: buyer[0].status === 'active' ? '#ff6347' : 'rgb(1, 114, 114)',
     color: '#ffffff',
     border: 'none',
     borderRadius: '5px',

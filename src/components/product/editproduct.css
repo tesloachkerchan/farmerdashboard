@@ -44,11 +44,11 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color:#42b72a /*#007bff*/;
+    background-color:teal /*#007bff*/;
     color: #fff;
     cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #1c790a;
+    background-color: rgb(1, 114, 114);
 }

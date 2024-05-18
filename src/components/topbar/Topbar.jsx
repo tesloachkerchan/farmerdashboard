@@ -26,7 +26,8 @@ export default function Topbar() {
           <span className='logo'>AgriConnect</span>
         </Link>
       </div>
-      <div className="topbarCenter"></div>
+      <div className="topbarCenter">
+      </div>
       <div className="topbarRight">
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -47,7 +48,9 @@ export default function Topbar() {
           />
           {dropdownVisible && (
             <div className="dropdownMenu">
-              <Link to='/profile' className="dropdownItem">Profile</Link>
+              <Link to={`/setting/:${user._id} `} className="dropdownItem">Profile</Link>
+              <Link to='/' className="dropdownItem">Dashboard</Link>
+              <Link to='/blog' className="dropdownItem">Advisory</Link>
               <span className="dropdownItem" onClick={handleLogout}>LogOut</span>
             </div>
           )}

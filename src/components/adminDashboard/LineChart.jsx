@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { teal } from '@mui/material/colors';
 import './liechart.css'
 export default function BasicArea() {
   return <>
@@ -10,6 +11,7 @@ export default function BasicArea() {
         {
           data: [2, 5.5, 2, 8.5, 1.5, 5],
           area: true,
+          color:'teal'
         },
       ]}
       width={500}
