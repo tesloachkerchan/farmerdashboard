@@ -7,7 +7,7 @@ export default function BlogSidebar() {
       <div className="blogsidebarItem">
         <span className="blogsidebarTitle">Articles</span>
         <img
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.libertyprim.com%2Fen%2Flexique-familles%2F74%2Fmango-lexique-des-exotic-fruits.htm&psig=AOvVaw1SHdLy1V6W-KEUCJvUVpD8&ust=1716048167839000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiH_t2HlYYDFQAAAAAdAAAAABAE"
+          src="https://i.ibb.co/zVB24m9/6bc2f4b45da7.jpg"
           alt=""
         />
         <p>

@@ -12,7 +12,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { green, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
-import './adminOrder.css';
+import './company.css';
 
 const columns = [
     { id: 'serial', label: 'S/No', minWidth: 50 },
@@ -87,7 +87,7 @@ const Company = () => {
                         </TableHead>
                         <TableBody>
                             {companies.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((company, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={company._id} component={Link} to={`/companyprofile/${company._id}`}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={company._id} >
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{company.name}</TableCell>
                                     <TableCell>{company.email}</TableCell>

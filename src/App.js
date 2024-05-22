@@ -24,6 +24,7 @@ import AdminCompanyPage from './pages/admin/AdminCompanyPage';
 import FarmerProfilePage from './pages/admin/FarmerProfilePage';
 import BuyerProfilePage from './pages/admin/BuyerProfilePage';
 import CompanyProfilePage from './pages/admin/CompanyProfilePage';
+import CompanyPageFarmer from './pages/farmer/CompanyPageFarmer';
 import Blog from './pages/blog/BlogPage';
 import Single from './pages/single/Single'
 import Write from './pages/write/Write'
@@ -64,6 +65,7 @@ function App() {
         <Route path="/companyorder/:id" element={user && user.role === 'transportation' ? <CompanyOrderDetailPage /> : <Login />} />
         <Route path="/adminorder" element={user && user.role === 'admin' ? <AdminOrderPage /> : <Login />} />
         <Route path="/farmer" element={user && user.role === 'admin' ? <FarmerPage /> : <Login />} />
+        <Route path="/viewcompany" element={user ? <CompanyPageFarmer /> : <Login />} />
         <Route path="/buyer" element={user && user.role === 'admin' ? <BuyerPage /> : <Login />} />
         <Route path="/company" element={user && user.role === 'admin' ? <AdminCompanyPage /> : <Login />} />
         <Route path="/order" element={user && user.role === 'farmer' ? <OrderPage /> : <Login />} />

@@ -1,9 +1,11 @@
 import "./login.css";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { loginCall } from "../../ApiCalls";
 import { AuthContext } from '../../context/AuthContext';
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const email = useRef();
@@ -14,8 +16,19 @@ export default function Login() {
   const handleClick = (e) => {
     e.preventDefault();
     loginCall({ email: email.current.value, password: password.current.value }, dispatch);
-    console.log(user);
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Login failed. Please check your credentials and try again.');
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleRegister = () => {
     navigate('/register');
@@ -23,6 +36,7 @@ export default function Login() {
 
   return (
     <div className="login">
+      <ToastContainer />
       <div className="loginWrapper">
         <div className="loginForm">
           <form className="loginBox" onSubmit={handleClick}>
@@ -37,7 +51,7 @@ export default function Login() {
               ref={password}
               required
             />
-            <button className="loginButton">
+            <button className="loginButton" type="submit">
               {isFetching ? <CircularProgress className="progress" /> : 'Log In'}
             </button>
             <span className="loginForgot">Forgot Password?</span>
@@ -47,6 +61,6 @@ export default function Login() {
           </form>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }

@@ -5,7 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import PersonIcon from '@mui/icons-material/Person';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { AuthContext } from '../../context/AuthContext';
 import './sidebar.css';
 
@@ -47,9 +47,9 @@ function Sidebar() {
           </li>
           </Link>
           <hr className='sidebarHr' />
-          <Link to='/order'>
+          <Link to='/viewcompany'>
             <li className="sidebarListItem">
-            <PersonIcon className='sidebarIcon'/>
+            <LocalShippingIcon className='sidebarIcon'/>
             <span className="sidebarListItemText">Company</span>
           </li>
           </Link>

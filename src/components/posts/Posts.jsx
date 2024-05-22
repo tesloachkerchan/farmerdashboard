@@ -1,14 +1,37 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Post from "../post/Post";
 import "./posts.css";
 
 export default function Posts() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/v1/blog/posts');
+        setPosts(response.data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div className="posts">
-      <Post img="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
-      <Post img="https://images.pexels.com/photos/6758029/pexels-photo-6758029.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-      <Post img="https://images.pexels.com/photos/6711867/pexels-photo-6711867.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
-      <Post img="https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
-      <Post img="https://images.pexels.com/photos/4916559/pexels-photo-4916559.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
+      {posts.map((post) => (
+        <Post
+          key={post._id}
+          img={post.img}
+          title={post.title}
+          description={post.description}
+          categories={post.categories}
+          createdAt={post.createdAt}
+          id={post._id}
+        />
+      ))}
     </div>
   );
 }

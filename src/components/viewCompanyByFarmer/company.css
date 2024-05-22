@@ -1,0 +1,32 @@
+.orderTable {
+    flex: 8;
+    padding: 0 15px;
+    position: sticky;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+}
+
+.header h1 {
+    padding: 10px;
+}
+
+.header .search {
+    width: 30%;
+    margin-left: 600px;
+    padding: 15px;
+    display: flex;
+}
+
+.searchInput {
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.searchIcon {
+    height: 35px;
+}
