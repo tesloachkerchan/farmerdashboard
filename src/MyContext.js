@@ -9,7 +9,7 @@ export const MyContextProvider = ({ children }) => {
   return (
     <MyContext.Provider value={{ basename, setBasename }}>
       {children}
-    </MyContext.Provider>
+    </MyContext.Provider>  
   );
 };
 

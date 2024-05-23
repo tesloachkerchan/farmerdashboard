@@ -1,27 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../context/AuthContext';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import './singlePost.css';
 
 export default function SinglePost() {
   const [post, setPost] = useState({});
+  const { user } = useContext(AuthContext)
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchPost = async () => {
+    fetchPost();
+  }, [id]);
+  const fetchPost = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/api/v1/blog/posts/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching post:', error);
       }
+  };
+  const DeletePost = async (id) => {
+      try {
+        const response = await axios.delete(`http://localhost:4000/api/v1/blog/posts/${id}`);
+        setPost(response.data);
+        toast.success('post deleted successfully');
+      } catch (error) {
+        console.error('Error fetching post:', error);
+        toast.error('Failed. Please try again later.');
+      }
     };
-
-    fetchPost();
-  }, [id]);
 
   return (
     <div className="singlePost">
+      <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
       <div className="singlePostWrapper">
         {post.img && (
           <img className="singlePostImg" src={post.img} alt={post.title} />
@@ -29,8 +43,13 @@ export default function SinglePost() {
         <h1 className="singlePostTitle">
           {post.title}
           <div className="singlePostEdit">
-            <i className="singlePostIcon far fa-edit"></i>
-            <i className="singlePostIcon far fa-trash-alt"></i>
+            {user && user.role === 'admin' && (
+              <>
+                <i className="singlePostIcon far fa-edit"></i>
+              <i className="singlePostIcon far fa-trash-alt" onClick={() => DeletePost(id)}></i>
+              </>
+              
+            )}
           </div>
         </h1>
         <div className="singlePostInfo">
