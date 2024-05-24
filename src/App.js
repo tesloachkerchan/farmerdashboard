@@ -30,6 +30,7 @@ import Single from './pages/single/Single'
 import Write from './pages/write/Write'
 import Settings from './pages/settings/Settings';
 import Register from './pages/register/Register'
+import ProfilePage from './pages/profile/ProfilePage';
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -78,7 +79,8 @@ function App() {
         <Route path="/blog" element={user ? <Blog /> : <Login />} />
         <Route path="/blog/:id" element={user ? <Single /> : <Login />} />
         <Route path="/addblog" element={user ? <Write /> : <Login />} />
-        <Route path="/setting/:id" element={user  ? <Settings /> : <Login />} />
+        <Route path="/setting/:id" element={user ? <Settings /> : <Login />} />
+        <Route path="/profile/:id" element={user  ? <ProfilePage /> : <Login />} />
         <Route path="/register" element={<Register /> } />
         </Routes>
       </BrowserRouter>
