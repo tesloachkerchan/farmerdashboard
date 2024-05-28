@@ -14,7 +14,7 @@ const FarmerProfile = () => {
     // Fetch farmer details using farmerId
     const fetchFarmer = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/user/farmer/${id}`);
+        const response = await axios.get(`http://localhost:4000/api/v1/user/farmer/${id}/admin`);
         const farmerData = response.data;
         setFarmer(farmerData);
         setLoading(false);

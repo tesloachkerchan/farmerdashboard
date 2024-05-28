@@ -1,12 +1,14 @@
 .profile-display {
     font-family: Arial, sans-serif;
     color: #333;
+    margin-top: 20px;
 }
 
 .profile-display .cover-photo img {
     width: 100%;
     height:  200px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .profile-display .profile-info {

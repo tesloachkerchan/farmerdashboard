@@ -65,7 +65,10 @@ export default function SinglePost() {
         </div>
         <div className="singlePostDesc">
           {post.description?.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+            <>
+              <p key={index}>{paragraph}</p>
+              <br/>
+            </>
           ))}
         </div>
       </div>

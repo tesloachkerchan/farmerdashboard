@@ -58,7 +58,7 @@ const AdminOrderDetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send a POST request to update the order with the selected status, shipping date, and shipping company
+    // Send a Put request to update the order with the selected status, shipping date, and shipping company
     try {
       await axios.put(`http://localhost:4000/api/v1/order/status/${id}/${user._id}/${shippingCompany}`, {
         status: selectedStatus,
@@ -75,7 +75,7 @@ const AdminOrderDetail = () => {
 
   const handleDeliveryStatusSubmit = async (e) => {
     e.preventDefault();
-    // Send a POST request to update the order with the delivery status
+    // Send a Put request to update the order with the delivery status
     try {
       await axios.put(`http://localhost:4000/api/v1/order/delivery/${id}/${user._id}`, {
         status: 'delivered',
