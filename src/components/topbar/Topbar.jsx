@@ -1,7 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { AuthContext } from '../../context/AuthContext';
@@ -28,7 +26,8 @@ export default function Topbar() {
       </div>
       <div className="topbarCenter">
       </div>
-      <div className="topbarRight">
+      {user && (
+        <div className="topbarRight">
         <div className="topbarIcons">
           <div className="topbarIconItem">
             <ChatIcon />
@@ -41,7 +40,7 @@ export default function Topbar() {
         </div>
         <div className="profileMenu">
           <img 
-            src='https://i.ibb.co/4pDNDk1/avatar.png' 
+            src={user.photo} 
             alt="" 
             className="topbarImg" 
             onClick={toggleDropdown}
@@ -56,6 +55,8 @@ export default function Topbar() {
           )}
         </div>
       </div>
+      )}
+      
     </div>
   );
 }

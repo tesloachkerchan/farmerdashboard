@@ -32,7 +32,7 @@ const ProductDetail = () => {
             <img src={product.image} alt={product.name} className="product-image" />
             <div className="product-header-details">
               <p><strong>Name:</strong> {product.name}</p>
-              <p><strong>Price:</strong> ${product.price}</p>
+              <p><strong>Price:</strong> ETB{product.price}</p>
               <p><strong>Available Quantity:</strong> {product.availableQuantity}</p>
               <p><strong>Farmer ID:</strong> {product.farmerId}</p>
               <p><strong>Created At:</strong> {product.createdAt}</p>

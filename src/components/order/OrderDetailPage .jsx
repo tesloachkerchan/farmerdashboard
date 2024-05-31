@@ -125,7 +125,7 @@ const OrderDetailPage = () => {
                     Product ID: {product.productId}<br />
                     Price: {product.ProductPrice}<br />
                     Quantity: {product.quantity}<br />
-                    Total Price: ${product.totalPrice}
+                    Total Price: ${product.totalPrice}<br />
                     Farmer ID: {product.farmerId}<br />
                     Product Owner: {product.farmerName}<br />
                   </li>

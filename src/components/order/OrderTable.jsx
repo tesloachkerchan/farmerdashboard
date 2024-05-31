@@ -107,7 +107,7 @@ const OrderTable = () => {
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{order.createdAt}</TableCell>
                   <TableCell>{order._id}</TableCell>
-                  <TableCell>$ {order.overallTotal}</TableCell>
+                  <TableCell>ETB {order.overallTotal}</TableCell>
                 
                   <TableCell style={{ color: getStatusColor(order.orderStatus) }}>{order.orderStatus}</TableCell>
                 </TableRow>

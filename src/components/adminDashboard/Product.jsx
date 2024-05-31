@@ -114,7 +114,7 @@ export default function ColumnGroupingTable() {
                 <TableRow hover role="checkbox" tabIndex={-1} key={product.id} >
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{product.name}</TableCell>
-                  <TableCell>$ {product.price}</TableCell>
+                  <TableCell>ETB {product.price}</TableCell>
                   <TableCell>{product.availableQuantity}</TableCell>
                   <TableCell>
                     <IconButton>
