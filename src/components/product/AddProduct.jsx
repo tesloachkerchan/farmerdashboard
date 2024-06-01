@@ -41,6 +41,12 @@ function AddProductForm() {
         availableQuantity: '',
         image: null,
       });
+      // Reset the image preview
+      const imagePreview = document.getElementById('image-preview');
+      if (imagePreview) {
+        imagePreview.src = '';
+        imagePreview.style.display = 'none';
+      }
       toast.success('Product added successfully');
     } catch (error) {
       if (error.response && error.response.status === 403) {
@@ -55,35 +61,33 @@ function AddProductForm() {
   };
 
   const handleChange = (e) => {
-  if (e.target.name === 'image') {
-    // Check if a file is selected
-    if (e.target.files.length > 0) {
-      // Add the file to formData
-      setFormData({ ...formData, image: e.target.files[0] });
+    if (e.target.name === 'image') {
+      // Check if a file is selected
+      if (e.target.files.length > 0) {
+        // Add the file to formData
+        setFormData({ ...formData, image: e.target.files[0] });
 
-      // Hide the label
-      const label = document.getElementById('image-label');
-      if (label) {
-        label.style.display = 'none';
-      }
-
-      // Display the selected image
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const imagePreview = document.getElementById('image-preview');
-        if (imagePreview) {
-          imagePreview.src = e.target.result;
-          imagePreview.style.display = 'block';
+        // Hide the label
+        const label = document.getElementById('image-label');
+        if (label) {
+          label.style.display = 'none';
         }
-      };
-      reader.readAsDataURL(e.target.files[0]);
+
+        // Display the selected image
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imagePreview = document.getElementById('image-preview');
+          if (imagePreview) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-  } else {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-};
-
-
+  };
 
   const handleTextareaChange = (e) => {
     // Auto-resize textarea based on content
@@ -107,13 +111,14 @@ function AddProductForm() {
               accept="image/*"
               name="image"
               onChange={handleChange}
+              required
               style={{ display: 'none' }}
             />
-  
+
             <label htmlFor="image" id="image-label" className="custom-file-upload">
               <CloudUploadIcon className='icon' />
-             </label>
-             {/* Image preview */}
+            </label>
+            {/* Image preview */}
             <img id="image-preview" alt="Selected" style={{ display: 'none' }} />
           </div>
           <div className="form-group">

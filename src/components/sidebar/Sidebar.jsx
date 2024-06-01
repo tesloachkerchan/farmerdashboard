@@ -14,7 +14,7 @@ function Sidebar() {
   return (
     <div className='sidebar'>
       <div className="sidebarAvatar">
-          <img src='https://i.ibb.co/4pDNDk1/avatar.png' alt="Avatar" className="avatarImage" />
+          <img src={user.photo} alt="Avatar" className="avatarImage" />
         <h3>{user.name}</h3>
       </div>
       <div className="sidebarWrapper">

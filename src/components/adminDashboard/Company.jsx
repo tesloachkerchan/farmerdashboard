@@ -63,7 +63,7 @@ const Company = () => {
         <div className='center'>
             <Paper sx={{ width: '100%' }}>
                 <div className='header'>
-                    <h1>Transportation Companies</h1>
+                    <h1>Companies</h1>
                     <div className='search'>
                         <div className='searchIcon'><SearchIcon /></div>
                         <input type='text' placeholder='search' className="searchInput" />

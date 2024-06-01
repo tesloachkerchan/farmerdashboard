@@ -83,7 +83,7 @@ function AdminHome() {
         <li>
           <i className="fas fa-people-group"><ViewListIcon /></i>
           <span className="text">
-            <h3>{earned}M</h3>
+            <h3>{earned}</h3>
             <p>Earning</p>
           </span>
         </li>

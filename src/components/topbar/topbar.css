@@ -66,6 +66,7 @@
     display: flex;
     margin-left: 300px;
     margin-right: -40px;
+    display: none;
 }
 
 .topbarIconItem {
@@ -90,12 +91,12 @@
 }
 
 .topbarImg {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 350px;
 }
 
 .profileMenu {
