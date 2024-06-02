@@ -18,7 +18,7 @@ const CompanyProfile = () => {
 
     const fetchCompany = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/api/v1/user/company/${id}`);
+            const response = await axios.get(`${BASE_URL}/api/v1/user/company/profile/${id}`);
             const { data } = response;
             console.log("Data received from server:", data); // Log received data
             if (data && data.company) {
