@@ -5,6 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import BasicArea from './LineChart';
 import BasicPie from './PieChart';
 import axios from 'axios';
+import { BASE_URL } from '../../utils/Config';
 import './home.css';
 
 function Home() {
@@ -24,7 +25,7 @@ function Home() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/products');
+      const response = await axios.get(`${BASE_URL}/api/v1/products`);
       const products = response.data;
       const productCount = products.length;
       setTotalProduct(productCount);
@@ -35,7 +36,7 @@ function Home() {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/order/total');
+      const response = await axios.get(`${BASE_URL}/api/v1/order/total`);
       const orders = response.data;
       const orderCount = orders.length;
       setTotalOrder(orderCount);
@@ -46,7 +47,7 @@ function Home() {
 
   const fetchEarned = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/order/earnings');
+      const response = await axios.get(`${BASE_URL}/api/v1/order/earnings`);
       const earnedAmount = response.data;
       setEarned(earnedAmount);
     } catch (error) {
@@ -56,7 +57,7 @@ function Home() {
 
   const fetchTotals = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/user/totals');
+      const response = await axios.get(`${BASE_URL}/api/v1/user/totals`);
       const { farmersCount, buyersCount, companiesCount } = response.data;
       setTotalFarmers(farmersCount);
       setTotalBuyers(buyersCount);

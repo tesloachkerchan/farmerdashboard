@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import './product.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { BASE_URL } from '../../utils/Config';
 
 const columns = [
   { id: 'serial', label: 'S/No', minWidth: 50 },
@@ -39,7 +40,7 @@ export default function ColumnGroupingTable() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/products`); // Replace '/api/products' with your actual backend endpoint
+      const response = await axios.get(`${BASE_URL}/api/v1/products`); // Replace '/api/products' with your actual backend endpoint
       setProducts(response.data); // Set the fetched products into state
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -61,7 +62,7 @@ export default function ColumnGroupingTable() {
   const handleDelete = async (productId) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:4000/api/v1/products/${user._id}/${productId}`);
+        await axios.delete(`${BASE_URL}/api/v1/products/${user._id}/${productId}`);
         // Refresh the products list after deletion
         fetchProducts();
       } catch (error) {

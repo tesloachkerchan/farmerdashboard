@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {BASE_URL} from '../../utils/Config'
 import Post from "../post/Post";
 import "./posts.css";
 
@@ -9,7 +10,7 @@ export default function Posts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/v1/blog/posts');
+        const response = await axios.get(`${BASE_URL}/api/v1/blog/posts`);
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Topbar from "../../components/topbar/Topbar";
 import { ToastContainer, toast } from 'react-toastify';
+import { BASE_URL } from '../../utils/Config';
 import 'react-toastify/dist/ReactToastify.css';
 import "./write.css";
 
@@ -21,7 +22,7 @@ export default function Write() {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/v1/blog/posts', formData, {
+      const response = await axios.post(`${BASE_URL}/api/v1/blog/posts`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

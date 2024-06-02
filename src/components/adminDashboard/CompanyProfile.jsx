@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import { BASE_URL } from '../../utils/Config';
 import './productDetail.css'; // Import your CSS file for styling
 
 const CompanyProfile = () => {
@@ -14,7 +15,7 @@ const CompanyProfile = () => {
     // Fetch farmer details using farmerId
     const fetchCompany = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/user/company/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/v1/user/company/${id}`);
         const companyData = response.data;
         setCompany(companyData);
         setLoading(false);
@@ -30,7 +31,7 @@ const CompanyProfile = () => {
   const handleStatusToggle = async () => {
     try {
       const newStatus = company[0].status === 'active' ? 'inactive' : 'active';
-      const response = await axios.put(`http://localhost:4000/api/v1/user/company/${id}/status`, { status: newStatus });
+      const response = await axios.put(`${BASE_URL}/api/v1/user/company/${id}/status`, { status: newStatus });
       if (response.status === 200) {
         // Update local state if request is successful
         setCompany(prevcompany => [{ ...prevcompany[0], status: newStatus }]);
@@ -56,7 +57,7 @@ const CompanyProfile = () => {
   return (
     <div className='center'>
       <div className="product-detail-container">
-        <h2 className="product-detail-title">company Profile</h2>
+        <h2 className="product-detail-title">Logistic Profile</h2>
          <ToastContainer position="top-center" autoClose={3000} style={{ marginTop: '50px' }} />
         {loading ? (
           <p>Loading...</p>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BASE_URL} from '../../utils/Config'
 import { CircularProgress } from "@mui/material";
 import './editproduct.css';
 
@@ -24,7 +25,7 @@ function EditProductForm() {
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/products/singleProduct/${id}`);
+      const response = await axios.get(`${BASE_URL}/api/v1/products/singleProduct/${id}`);
         const productData = response.data;
         console.log(productData)
       setFormData({
@@ -46,7 +47,7 @@ function EditProductForm() {
     setLoading(true);
     try {
       // Send a PUT request to update the product with the new data
-      const response = await axios.put(`http://localhost:4000/api/v1/products/${id}`, formData);
+      const response = await axios.put(`${BASE_URL}/api/v1/products/${id}`, formData);
       console.log('Product updated:', response.data);
       // Clear the form after successful submission
       setFormData({

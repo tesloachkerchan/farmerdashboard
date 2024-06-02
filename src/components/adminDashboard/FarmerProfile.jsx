@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import { BASE_URL } from '../../utils/Config';
 import './productDetail.css'; // Import your CSS file for styling
 
 const FarmerProfile = () => {
@@ -14,7 +15,7 @@ const FarmerProfile = () => {
     // Fetch farmer details using farmerId
     const fetchFarmer = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/user/farmer/${id}/admin`);
+        const response = await axios.get(`${BASE_URL}/api/v1/user/farmer/${id}/admin`);
         const farmerData = response.data;
         setFarmer(farmerData);
         setLoading(false);
@@ -30,7 +31,7 @@ const FarmerProfile = () => {
   const handleStatusToggle = async () => {
     try {
       const newStatus = farmer[0].status === 'active' ? 'inactive' : 'active';
-      const response = await axios.put(`http://localhost:4000/api/v1/user/farmer/${id}/status`, { status: newStatus });
+      const response = await axios.put(`${BASE_URL}/api/v1/user/farmer/${id}/status`, { status: newStatus });
       if (response.status === 200) {
         // Update local state if request is successful
         setFarmer(prevFarmer => [{ ...prevFarmer[0], status: newStatus }]);

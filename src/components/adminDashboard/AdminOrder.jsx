@@ -12,6 +12,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { green, blue, orange } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
+import {BASE_URL} from '../../utils/Config'
 import './adminOrder.css'
 
 const columns = [
@@ -45,7 +46,7 @@ const AdminOrder = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order`);
+      const response = await axios.get(`${BASE_URL}/api/v1/order`);
       const { data } = response;
       console.log(data)
       if (Array.isArray(data.orders)) {

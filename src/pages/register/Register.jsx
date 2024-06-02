@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router';
 import { Link } from "react-router-dom";
 import Topbar from '../../components/topbar/Topbar';
+import { BASE_URL } from "../../utils/Config";
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function Register() {
@@ -34,7 +35,7 @@ export default function Register() {
       formData.append("phone", phone.current.value);
       formData.append("address", address.current.value);
       try {
-        await axios.post('http://localhost:4000/api/v1/auth/register', formData, {
+        await axios.post(`${BASE_URL}/api/v1/auth/register`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

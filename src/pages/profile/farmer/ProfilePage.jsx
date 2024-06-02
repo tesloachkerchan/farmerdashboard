@@ -5,6 +5,7 @@ import ProfileEdit from './EditProfile';
 import { useParams } from 'react-router-dom';
 import './profilePage.css';
 import Topbar from '../../../components/topbar/Topbar';
+import { BASE_URL } from '../../../utils/Config';
 
 const ProfilePage = () => {
     const [farmer, setFarmer] = useState(null);
@@ -17,7 +18,7 @@ const ProfilePage = () => {
 
     const fetchFarmer = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/user/farmer/${id}`);
+            const response = await axios.get(`${BASE_URL}/api/v1/user/farmer/${id}`);
             const { data } = response;
             console.log("Data received from server:", data); // Log received data
             if (data && data.farmer) {
@@ -48,7 +49,7 @@ const ProfilePage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/api/v1/user/farmer/${id}`, farmer)
+        axios.put(`${BASE_URL}/api/v1/user/farmer/${id}`, farmer)
             .then(response => {
                 setFarmer(response.data.farmer);
                 setIsEditing(false);

@@ -4,6 +4,7 @@ import ProfileDisplay from './Profile';
 import ProfileEdit from './CompanyEditProfile';
 import { useParams } from 'react-router-dom';
 import './profilePage.css';
+import { BASE_URL } from '../../../utils/Config';
 import Topbar from '../../../components/topbar/Topbar';
 
 const CompanyProfile = () => {
@@ -17,7 +18,7 @@ const CompanyProfile = () => {
 
     const fetchCompany = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/user/company/${id}`);
+            const response = await axios.get(`${BASE_URL}/api/v1/user/company/${id}`);
             const { data } = response;
             console.log("Data received from server:", data); // Log received data
             if (data && data.company) {
@@ -48,7 +49,7 @@ const CompanyProfile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/api/v1/user/company/${id}`, company)
+        axios.put(`${BASE_URL}/api/v1/user/company/${id}`, company)
             .then(response => {
                 setCompany(response.data.company);
                 setIsEditing(false);

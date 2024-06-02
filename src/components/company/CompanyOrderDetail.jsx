@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
+import { BASE_URL } from '../../utils/Config';
 import './companyOrderDetail.css'; // Import your CSS file for styling
 
 const OrderDetailPage = () => {
@@ -14,7 +15,7 @@ const OrderDetailPage = () => {
     // Fetch order details using orderId
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/order/singleOrder/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/v1/order/singleOrder/${id}`);
         const orderData = response.data; // Get order data from response
         setOrder(orderData);
       } catch (error) {
@@ -33,7 +34,7 @@ const OrderDetailPage = () => {
     e.preventDefault();
     // Send a PUT request to update the order with the selected shipping date and status to 'shipping'
     try {
-      await axios.put(`http://localhost:4000/api/v1/order/status/transportation/${id}`, {
+      await axios.put(`${BASE_URL}/api/v1/order/status/transportation/${id}`, {
         status: 'shipping',
         shippingDate: shippingDate,
       });

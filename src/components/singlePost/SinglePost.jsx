@@ -2,6 +2,7 @@ import React, { useState, useEffect,useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
+import {BASE_URL} from '../../utils/Config'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import './singlePost.css';
@@ -16,7 +17,7 @@ export default function SinglePost() {
   }, [id]);
   const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/blog/posts/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/v1/blog/posts/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -24,7 +25,7 @@ export default function SinglePost() {
   };
   const DeletePost = async (id) => {
       try {
-        const response = await axios.delete(`http://localhost:4000/api/v1/blog/posts/${id}`);
+        const response = await axios.delete(`${BASE_URL}/api/v1/blog/posts/${id}`);
         setPost(response.data);
         toast.success('post deleted successfully');
       } catch (error) {

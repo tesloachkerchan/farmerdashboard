@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import {BASE_URL} from '../../utils/Config'
 import { AuthContext } from '../../context/AuthContext';
 
 function AddProductForm() {
@@ -30,7 +31,7 @@ function AddProductForm() {
       formDataToSend.append('image', formData.image);
 
       const response = await axios.post(
-        `http://localhost:4000/api/v1/products/${user._id}`,
+        `${BASE_URL}/api/v1/products/${user._id}`,
         formDataToSend
       );
       console.log('Product added:', response.data);

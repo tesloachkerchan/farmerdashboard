@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BASE_URL} from '../../utils/Config'
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './orderDetailPage.css'; // Import your CSS file for styling
@@ -19,7 +20,7 @@ const OrderDetailPage = () => {
     // Fetch order details using orderId
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/order/singleOrder/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/v1/order/singleOrder/${id}`);
         const orderData = response.data; // Get order data from response
         setOrder(orderData);
       } catch (error) {
@@ -33,7 +34,7 @@ const OrderDetailPage = () => {
     if (order && order.orderStatus === 'pending') {
       const fetchTransportationCompanies = async () => {
         try {
-          const response = await axios.get('http://localhost:4000/api/v1/company');
+          const response = await axios.get(`${BASE_URL}/api/v1/company`);
           setTransportationCompanies(response.data);
         } catch (error) {
           console.error('Error fetching transportation companies:', error);
@@ -60,7 +61,7 @@ const OrderDetailPage = () => {
     e.preventDefault();
     // Send a POST request to update the order with the selected status, shipping date, and shipping company
     try {
-      await axios.put(`http://localhost:4000/api/v1/order/status/${id}/${user._id}/${shippingCompany}`, {
+      await axios.put(`${BASE_URL}/api/v1/order/status/${id}/${user._id}/${shippingCompany}`, {
         status: selectedStatus,
         shippingDate: shippingDate,
       });
@@ -77,7 +78,7 @@ const OrderDetailPage = () => {
     e.preventDefault();
     // Send a POST request to update the order with the delivery status
     try {
-      await axios.put(`http://localhost:4000/api/v1/order/delivery/${id}/${user._id}`, {
+      await axios.put(`${BASE_URL}/api/v1/order/delivery/${id}/${user._id}`, {
         status: 'delivered',
       });
       toast.success('status updated successfully');

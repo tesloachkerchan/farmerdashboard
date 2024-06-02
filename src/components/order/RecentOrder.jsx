@@ -8,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import {BASE_URL} from '../../utils/Config'
 import { green, blue, orange } from '@mui/material/colors';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -39,7 +40,7 @@ const RecentOrder = () => {
 
   const fetchRecentOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order/farmer/${user._id}`);
+      const response = await axios.get(`${BASE_URL}/api/v1/order/farmer/${user._id}`);
       setOrders(response.data.orders);
     } catch (error) {
       console.error('Error fetching recent orders:', error);

@@ -50,7 +50,7 @@ function Sidebar() {
           <Link to='/viewcompany'>
             <li className="sidebarListItem">
             <LocalShippingIcon className='sidebarIcon'/>
-            <span className="sidebarListItemText">Company</span>
+            <span className="sidebarListItemText">Logistic</span>
           </li>
           </Link>
           <hr className='sidebarHr' />

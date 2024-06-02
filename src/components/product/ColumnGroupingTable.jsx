@@ -15,6 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { green, red, blue } from '@mui/material/colors';
 import SearchIcon from '@mui/icons-material/Search';
+import {BASE_URL} from '../../utils/Config'
 import './product.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -41,7 +42,7 @@ export default function ColumnGroupingTable() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/products/${user._id}`); // Replace '/api/products' with your actual backend endpoint
+      const response = await axios.get(`${BASE_URL}/api/v1/products/${user._id}`); // Replace '/api/products' with your actual backend endpoint
       setProducts(response.data); // Set the fetched products into state
       const p = response.data;
     } catch (error) {
@@ -64,7 +65,7 @@ export default function ColumnGroupingTable() {
   const handleDelete = async (productId) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:4000/api/v1/products/${user._id}/${productId}`);
+        await axios.delete(`${BASE_URL}/api/v1/products/${user._id}/${productId}`);
         // Refresh the products list after deletion
         toast.success('Product deleted successfully');
         fetchProducts();

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {BASE_URL} from '../../utils/Config'
 import { useParams } from 'react-router-dom';
 import './productDetailPage.css'; // Import your CSS file for styling
 
@@ -11,7 +12,7 @@ const ProductDetailPage = () => {
     // Fetch product details using productId
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/products/singleProduct/${id}`);
+        const response = await axios.get(`${BASE_URL}/api/v1/products/singleProduct/${id}`);
         const productData = response.data;
         setProduct(productData);
       } catch (error) {

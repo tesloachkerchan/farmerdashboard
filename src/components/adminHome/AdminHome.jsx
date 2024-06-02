@@ -4,11 +4,12 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import BarChart from '../chart/BarChart';
 import RecentOrder from '../order/RecentOrder';
-import axios from 'axios';
+import axios from 'axios'; 
+import {BASE_URL} from '../../utils/Config'
 import './adminhome.css';
 import { AuthContext } from '../../context/AuthContext';
 
-function AdminHome() {
+function AdminHome() { 
   const [totalProduct, setTotalProduct] = useState(0);
   const [totalOrder, setTotalOrder] = useState(0);
   const [earned, setEarned] = useState(0);
@@ -25,7 +26,7 @@ function AdminHome() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/products/${user._id}`);
+      const response = await axios.get(`${BASE_URL}/api/v1/products/${user._id}`);
       const products = response.data;
       const productCount = products.length;
       setTotalProduct(productCount);
@@ -36,7 +37,7 @@ function AdminHome() {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order/total/farmer/${user._id}`);
+      const response = await axios.get(`${BASE_URL}/api/v1/order/total/farmer/${user._id}`);
       const orders = response.data;
       const orderCount = orders.length;
       setTotalOrder(orderCount);
@@ -47,7 +48,7 @@ function AdminHome() {
 
   const fetchEarned = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order/earnings/farmer/${user._id}`);
+      const response = await axios.get(`${BASE_URL}/api/v1/order/earnings/farmer/${user._id}`);
       const earnedAmount = response.data;
       setEarned(earnedAmount);
     } catch (error) {
@@ -57,7 +58,7 @@ function AdminHome() {
 
   const fetchOrderCounts = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/order/farmer/${user._id}/order-counts`);
+      const response = await axios.get(`${BASE_URL}/api/v1/order/farmer/${user._id}/order-counts`);
       const counts = response.data;
       const { pendingCount, shippingCount, deliveredCount, processingCount } = counts;
       setOrderCounts([pendingCount, shippingCount, deliveredCount, processingCount]);
