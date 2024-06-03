@@ -1,20 +1,23 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { AuthContext } from '../../context/AuthContext';
+
 import './topbar.css';
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { user,logout } = useContext(AuthContext);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const navigate = useNavigate()
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  const handleLogout = () => {
-    // Implement logout functionality
+  const handleLogout = () => { 
+    logout(); // Call the logout function from AuthContext 
+    navigate('/login'); // Navigate to the home page 
   };
 
   return (
