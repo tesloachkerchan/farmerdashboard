@@ -1,6 +1,5 @@
 import "./settings.css";
 import Topbar from "../../components/topbar/Topbar";
-import BlogSidebar from "../../components/blogsidebar/BlogSidebar";
 
 export default function Settings() {
   return <>
@@ -39,7 +38,6 @@ export default function Settings() {
           </button>
         </form>
       </div>
-      <BlogSidebar />
     </div>
   </>;
 }

@@ -50,9 +50,12 @@ export default function Topbar() {
           />
           {dropdownVisible && (
             <div className="dropdownMenu">
-              <Link to={`/profile/${user._id} `} className="dropdownItem">Profile</Link>
+              {user.role !== 'admin' && (
+                  <Link to={`/profile/${user._id} `} className="dropdownItem">Profile</Link>
+              )}
               <Link to='/' className="dropdownItem">Dashboard</Link>
               <Link to='/blog' className="dropdownItem">Advisory</Link>
+              <Link to={`/setting/${user._id}`} className="dropdownItem">Setting</Link>
               <span className="dropdownItem" onClick={handleLogout}>LogOut</span>
             </div>
           )}

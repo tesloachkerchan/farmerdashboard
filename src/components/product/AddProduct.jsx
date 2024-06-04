@@ -7,6 +7,7 @@ import { CircularProgress } from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {BASE_URL} from '../../utils/Config'
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function AddProductForm() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ function AddProductForm() {
   });
   const [loading, setLoading] = useState(false); // Add loading state
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +51,10 @@ function AddProductForm() {
         imagePreview.style.display = 'none';
       }
       toast.success('Product added successfully');
+      setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Handle case where farmer is not found or not active
