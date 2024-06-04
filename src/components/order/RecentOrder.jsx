@@ -73,7 +73,7 @@ const RecentOrder = () => {
               <TableRow hover role="checkbox" tabIndex={-1} key={order._id} component={Link} to={`/order/${order._id}`}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{order.createdAt}</TableCell>
-                <TableCell>$ {order.overallTotal}</TableCell>
+                <TableCell> ETB {order.overallTotal}</TableCell>
                 <TableCell style={{ color: getStatusColor(order.orderStatus) }}>{order.orderStatus}</TableCell>
               </TableRow>
             ))}

@@ -104,7 +104,7 @@ const AdminOrderDetail = () => {
             {order.buyerContactDetails && order.buyerContactDetails.phone && (
               <p><strong>Buyer Phone:</strong> {order.buyerContactDetails.phone}</p>
             )}
-            <p><strong>Overall Total:</strong> ${order.overallTotal}</p>
+            <p><strong>Overall Total:</strong> ETB {order.overallTotal}</p>
             <p><strong>Order Status:</strong> {order.orderStatus}</p>
             {order.transportationDetails && order.transportationDetails.estimatedDeliveryDate && (
               <p><strong>Estimation Delivery Date:</strong> {order.transportationDetails.estimatedDeliveryDate}</p>
@@ -126,7 +126,7 @@ const AdminOrderDetail = () => {
                     Product ID: {product.productId}<br />
                     Price: {product.ProductPrice}<br />
                     Quantity: {product.quantity}<br />
-                    Total Price: ${product.totalPrice}
+                    Total Price: ETB {product.totalPrice}
                     Farmer ID: {product.farmerId}<br />
                     Product Owner: {product.farmerName}<br />
                   </li>
