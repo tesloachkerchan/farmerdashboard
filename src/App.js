@@ -34,6 +34,7 @@ import ProfilePage from './pages/profile/farmer/ProfilePage';
 import ProfileEdit from './pages/profile/farmer/EditProfile';
 import CompanyProfile from './pages/profile/company/CompanyProfile'
 import CompanyEditProfile from './pages/profile/company/CompanyEditProfile';
+import Contact from './pages/contact/Contact';
 
 function App() {
   const {user} = useContext(AuthContext)
@@ -109,9 +110,11 @@ function App() {
       <Login />
     )
   } />
-        <Route path="/register" element={<Register /> } />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={ <Contact /> } />
         </Routes>
       </BrowserRouter>
+   
       
     </div>
   );

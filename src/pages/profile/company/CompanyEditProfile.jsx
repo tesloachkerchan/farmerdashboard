@@ -1,12 +1,13 @@
 import React from 'react';
 import './ProfileEdit.css';
+import cover from '../../../assets/cover.jpg'
 
 const CompanyEditProfile = ({ company, handleChange, handleSubmit, onCancel }) => {
     return <>
         {company &&
         <div className="profile-edit">
             <div className="cover-photo">
-                <img src="https://i.ibb.co/bNY25qJ/22539f0cbe01.jpg" alt="Cover" />
+                <img src={cover} alt="Cover" />
             </div>
             <div className="profile-info">
                 <img src={company[0].photo} alt="Profile" className="profile-picture" />

@@ -1,0 +1,113 @@
+/* src/Contact.css */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-header h1{
+    color: teal;
+    margin-bottom: 30px;
+}
+h3{
+    color: teal;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.contact-icon {
+    color: teal;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.contact-item p {
+    margin: 0;
+}
+
+.contact-form {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: teal;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.submit-button {
+    background-color: teal;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #006666;
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group-inline {
+        flex-direction: column;
+    }
+}

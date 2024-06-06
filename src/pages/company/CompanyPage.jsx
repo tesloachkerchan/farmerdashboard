@@ -2,6 +2,7 @@ import React from 'react'
 import Topbar from '../../components/topbar/Topbar';
 import CompanySideBar from '../../components/company/CompanySideBar';
 import Company from '../../components/company/Company';
+import Footer from '../../components/footer/Footer';
 function CompanyPage() {
   return (
     <>
@@ -10,6 +11,7 @@ function CompanyPage() {
         <CompanySideBar />
         <Company />
       </div>
+      <Footer />
     </>
   );
 }

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import './profilePage.css';
 import { BASE_URL } from '../../../utils/Config';
 import Topbar from '../../../components/topbar/Topbar';
+import Footer from '../../../components/footer/Footer';
 
 const CompanyProfile = () => {
     const [company, setCompany] = useState(null);
@@ -88,6 +89,7 @@ const CompanyProfile = () => {
                     )}
                 </div>
             )}
+            <Footer/>
         </>
     );
 };

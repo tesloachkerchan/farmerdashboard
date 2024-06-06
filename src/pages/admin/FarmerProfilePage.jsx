@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import FarmerProfile from '../../components/adminDashboard/FarmerProfile';
 import AdminSidebar from '../../components/adminDashboard/AdminSidebar';
 import './adminHomePage.css'
+import Footer from '../../components/footer/Footer';
 function FarmerProfilePage() {
   return (
     <>
@@ -11,6 +12,7 @@ function FarmerProfilePage() {
         <AdminSidebar />
         <FarmerProfile />
       </div>
+      <Footer />
     </>
   );
 }

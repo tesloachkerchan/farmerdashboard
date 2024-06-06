@@ -6,6 +6,8 @@ import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Topbar from "../../components/topbar/Topbar";
+import Footer from "../../components/footer/Footer";
 
 export default function Login() {
   const email = useRef();
@@ -34,7 +36,8 @@ export default function Login() {
     navigate('/register');
   };
 
-  return (
+  return <>
+    <Topbar />
     <div className="login">
       <ToastContainer />
       <div className="loginWrapper">
@@ -62,5 +65,6 @@ export default function Login() {
         </div>
       </div>
     </div>
-  );
+    <Footer />
+  </>
 }

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import './profilePage.css';
 import Topbar from '../../../components/topbar/Topbar';
 import { BASE_URL } from '../../../utils/Config';
+import Footer from '../../../components/footer/Footer';
 
 const ProfilePage = () => {
     const [farmer, setFarmer] = useState(null);
@@ -88,6 +89,7 @@ const ProfilePage = () => {
                     )}
                 </div>
             )}
+            <Footer/>
         </>
     );
 };

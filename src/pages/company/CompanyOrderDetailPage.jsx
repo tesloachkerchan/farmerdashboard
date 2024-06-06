@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/company/CompanySideBar';
 import OrderDetailPage from '../../components/company/CompanyOrderDetail';
 import './companyPage.css'
+import Footer from '../../components/footer/Footer';
 function CompanyOrderDetailPage() {
   return (
     <>
@@ -11,6 +12,7 @@ function CompanyOrderDetailPage() {
         <Sidebar />
         <OrderDetailPage />
       </div>
+      <Footer />
     </>
   );
 }

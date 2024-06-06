@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import ProductDetail from '../../components/product/ProductDetail';
 import './productpage.css'
+import Footer from '../../components/footer/Footer';
 function ProductDetailPage() {
   return (
     <>
@@ -11,6 +12,7 @@ function ProductDetailPage() {
         <Sidebar />
         <ProductDetail />
       </div>
+      <Footer />
     </>
   );
 }

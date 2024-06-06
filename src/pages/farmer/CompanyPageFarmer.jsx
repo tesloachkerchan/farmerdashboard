@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar'
 import Company from '../../components/viewCompanyByFarmer/Company';
 import './companypage.css'
+import Footer from '../../components/footer/Footer';
 function CompanyPageFarmer() {
   return (
     <>
@@ -11,6 +12,7 @@ function CompanyPageFarmer() {
         <Sidebar />
         <Company />
       </div>
+      <Footer />
     </>
   );
 }

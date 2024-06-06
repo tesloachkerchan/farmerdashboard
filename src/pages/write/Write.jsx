@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { BASE_URL } from '../../utils/Config';
 import 'react-toastify/dist/ReactToastify.css';
 import "./write.css";
+import Footer from '../../components/footer/Footer';
 
 export default function Write() {
   const [title, setTitle] = useState("");
@@ -90,6 +91,7 @@ export default function Write() {
           </button> 
         </form>
       </div>
+      <Footer />
     </>
   );
 }

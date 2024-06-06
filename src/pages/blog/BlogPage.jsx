@@ -3,6 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Posts from "../../components/posts/Posts";
 import BlogSidebar from "../../components/blogsidebar/BlogSidebar";
 import "./blogPage.css";
+import Footer from "../../components/footer/Footer";
 
 export default function Blog() {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function Blog() {
         <Posts />
         <BlogSidebar />
       </div>
+      <Footer />
     </>
   );
 }

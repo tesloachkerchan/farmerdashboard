@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import OrderTable from '../../components/order/OrderTable';
 import './orderPage.css'
+import Footer from '../../components/footer/Footer';
 function OrderPage() {
   return (
     <>
@@ -11,6 +12,7 @@ function OrderPage() {
         <Sidebar />
         <OrderTable />
       </div>
+      <Footer />
     </>
   );
 }

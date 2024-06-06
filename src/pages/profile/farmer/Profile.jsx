@@ -1,5 +1,6 @@
 import React from 'react';
 import './profile.css';
+import cover  from '../../../assets/cover.jpg';
 
 const ProfileDisplay = ({ farmer, onEdit }) => {
     return (
@@ -7,7 +8,7 @@ const ProfileDisplay = ({ farmer, onEdit }) => {
             {farmer[0] &&
             <div className="profile-display">
                 <div className="cover-photo">
-                    <img src="https://i.ibb.co/bNY25qJ/22539f0cbe01.jpg" alt="Cover" />
+                    <img src={cover} alt="Cover" />
                 </div>
                 <div className="profile-info">
                     <img src={farmer[0].photo} alt="Profile" className="profile-picture" />

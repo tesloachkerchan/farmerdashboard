@@ -139,7 +139,7 @@ const AdminOrderDetail = () => {
           <p>Loading...</p>
         )}
       </div>
-      <div className='process-detail-container'>
+      {/*<div className='process-detail-container'>
         {order && order.orderStatus === 'pending' ? (
         <form onSubmit={handleSubmit} className="order-processing-form">
           <label htmlFor="status">Status:</label>
@@ -172,7 +172,7 @@ const AdminOrderDetail = () => {
 
           </form>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

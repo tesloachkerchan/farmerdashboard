@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import AdminSidebar from '../../components/adminDashboard/AdminSidebar';
 import './adminHomePage.css'
 import CompanyProfile from '../../components/adminDashboard/CompanyProfile';
+import Footer from '../../components/footer/Footer';
 function CompanyProfilePage() {
   return (
     <>
@@ -11,6 +12,7 @@ function CompanyProfilePage() {
         <AdminSidebar />
         <CompanyProfile />
       </div>
+      <Footer />
     </>
   );
 }

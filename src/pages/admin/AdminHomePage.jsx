@@ -3,6 +3,7 @@ import Home from '../../components/adminDashboard/Home'
 import Topbar from '../../components/topbar/Topbar';
 import AdminSidebar from '../../components/adminDashboard/AdminSidebar';
 import './adminHomePage.css'
+import Footer from '../../components/footer/Footer';
 function AdminHomePage() {
   return (
     <>
@@ -11,6 +12,7 @@ function AdminHomePage() {
         <AdminSidebar />
         <Home />
       </div>
+      <Footer />
     </>
   );
 }

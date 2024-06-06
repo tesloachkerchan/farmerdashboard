@@ -11,43 +11,29 @@ export default function BlogSidebar() {
           alt=""
         />
         <p>
-          Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
-          amet ex esse.Sunt eu ut nostrud id quis proident.
+          Our advisory service supports the AgriConnect community by providing expert
+          guidance to farmers, buyers, logistics partners,
+          and administrators. We foster collaboration and efficiency
+          in the agricultural supply chain, offering advice on best
+          farming practices, market trends, logistics, and administrative
+          support.
         </p>
       </div>
       <div className="blogsidebarItem">
         <span className="blogsidebarTitle">CATEGORIES</span>
         <ul className="blogsidebarList">
           <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Life">
-              Life
-            </Link>
+              Farmer
           </li>
           <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Music">
-              Music
-            </Link>
+              Logistic
           </li>
           <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Sport">
-              Sport
-            </Link>
+              Buyer
           </li>
           <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Style">
-              Style
-            </Link>
+              Admin
           </li>
-          <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Tech">
-              Tech
-            </Link>
-          </li>
-          <li className="blogsidebarListItem">
-            <Link className="link" to="/posts?cat=Cinema">
-              Cinema
-            </Link>
-          </li> 
         </ul>
       </div>
       <div className="blogsidebarItem">

@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar';
 import AdminSidebar from '../../components/adminDashboard/AdminSidebar';
 import './adminHomePage.css'
 import BuyerProfile from '../../components/adminDashboard/BuyerProfile';
+import Footer from '../../components/footer/Footer';
 function BuyerProfilePage() {
   return (
     <>
@@ -11,6 +12,7 @@ function BuyerProfilePage() {
         <AdminSidebar />
         <BuyerProfile />
       </div>
+      <Footer />
     </>
   );
 }
