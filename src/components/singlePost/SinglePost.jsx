@@ -5,12 +5,14 @@ import { AuthContext } from '../../context/AuthContext';
 import {BASE_URL} from '../../utils/Config'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './singlePost.css';
 
 export default function SinglePost() {
   const [post, setPost] = useState({});
   const { user } = useContext(AuthContext)
   const { id } = useParams();
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchPost();
@@ -24,13 +26,18 @@ export default function SinglePost() {
       }
   };
   const DeletePost = async (id) => {
-      try {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+        try {
         const response = await axios.delete(`${BASE_URL}/api/v1/blog/posts/${id}`);
         setPost(response.data);
         toast.success('post deleted successfully');
+        setTimeout(() => {
+          navigate('/blog')
+    }, 5000);
       } catch (error) {
         console.error('Error fetching post:', error);
         toast.error('Failed. Please try again later.');
+      }
       }
     };
 

@@ -16,13 +16,7 @@
 .settingsTitleUpdate {
   font-size: 30px;
   margin-bottom: 20px;
-  color: lightcoral;
-}
-
-.settingsTitleDelete {
-  color: red;
-  font-size: 12px;
-  cursor: pointer;
+  color: teal;
 }
 
 .settingsForm {

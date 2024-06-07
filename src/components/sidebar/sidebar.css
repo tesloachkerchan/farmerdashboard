@@ -78,3 +78,9 @@
     margin-top: 15px;
     /* Adjust spacing */
 }
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+}

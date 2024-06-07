@@ -19,39 +19,57 @@ export default function Register() {
   const address = useRef();
   const navigate = useNavigate();
 
+  const validatePassword = (password) => {
+    const upperCasePattern = /[A-Z]/;
+    const specialCharacterPattern = /[!@#$%^&*(),.?":{}|<>]/;
+    return upperCasePattern.test(password) && specialCharacterPattern.test(password);
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
-    if (passwordAgain.current.value !== password.current.value) {
+    const passwordValue = password.current.value;
+    const passwordAgainValue = passwordAgain.current.value;
+
+    if (!validatePassword(passwordValue)) {
+      password.current.setCustomValidity("Password must have at least one uppercase letter and one special character.");
+      password.current.reportValidity();
+      return;
+    }
+
+    if (passwordValue !== passwordAgainValue) {
       password.current.setCustomValidity("Passwords don't match!");
-    } else {
-      const formData = new FormData();
-      formData.append("name", name.current.value);
-      formData.append("email", email.current.value);
-      formData.append("password", password.current.value);
-      formData.append("confirmPassword", passwordAgain.current.value);
-      formData.append("role", role.current.value);
-      formData.append("license", license.current.files[0]);
-      formData.append("profilePicture", profilePicture.current.files[0]);
-      formData.append("phone", phone.current.value);
-      formData.append("address", address.current.value);
-      try {
-        await axios.post(`${BASE_URL}/api/v1/auth/register`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
-        toast.success('Registered successfully');
-        navigate('/');
-      } catch (err) {
-        toast.error('Failed to register, try again!');
-        console.log(err);
-      }
+      password.current.reportValidity();
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", name.current.value);
+    formData.append("email", email.current.value);
+    formData.append("password", passwordValue);
+    formData.append("confirmPassword", passwordAgainValue);
+    formData.append("role", role.current.value);
+    formData.append("license", license.current.files[0]);
+    formData.append("profilePicture", profilePicture.current.files[0]);
+    formData.append("phone", phone.current.value);
+    formData.append("address", address.current.value);
+
+    try {
+      await axios.post(`${BASE_URL}/api/v1/auth/register`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      toast.success('Registered successfully');
+      navigate('/');
+    } catch (err) {
+      toast.error('Failed to register, try again!');
+      console.log(err);
     }
   };
 
   return (
     <>
-      <Topbar/>
+      <Topbar />
       <div className="register">
         <div className="registerWrapper">
           <div className="registerForm">

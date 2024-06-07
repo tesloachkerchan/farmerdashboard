@@ -59,3 +59,19 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+@media (max-width: 768px) {
+  .post {
+      width: 285px;
+      margin: 0px 25px 40px 25px;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .postImg {
+      width: 285px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 7px;
+    }
+  
+}
