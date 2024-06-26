@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router';
 import { Link } from "react-router-dom";
 import Topbar from '../../components/topbar/Topbar';
+import Footer from "../../components/footer/Footer";
 import { BASE_URL } from "../../utils/Config";
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -152,6 +153,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

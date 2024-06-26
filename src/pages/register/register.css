@@ -84,3 +84,11 @@
 .loginRedirectButton:focus {
   outline: none;
 }
+@media (max-width: 768px) {
+  .register {
+    margin-left: 90px;
+    margin-right: 10px;
+    margin-bottom: 140px;
+    margin-top: 80px;
+  }
+}

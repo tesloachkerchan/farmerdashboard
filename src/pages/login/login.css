@@ -94,3 +94,10 @@
   color: black;
   font-size: 14px;
 }
+@media (max-width: 768px) {
+  .login{
+    margin-left: 90px;
+    margin-top: -120px;
+    margin-bottom: -100px;
+  }
+}

@@ -101,3 +101,23 @@
     flex: 5;
     padding:15px;
 }
+@media (max-width: 768px) {
+    .box-info {
+        grid-template-columns: 1fr;
+        width: 53%;
+    }
+
+    .center {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .chart, .recentorder {
+        width: 100%;
+        margin: 15px 0;
+    }
+    .chart{
+        display: none;
+    }
+}
