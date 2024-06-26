@@ -63,6 +63,39 @@
     color: #d1e0e0;
     /* Slightly lighter teal color on hover */
 }
+.footer-weather {
+    margin-top: 20px;
+}
+
+.weather-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.weather-form button {
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.weather-result {
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
 
 .footer-divider {
     border: 0;

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import emailjs from 'emailjs-com';
 import './contact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,40 +9,30 @@ import Topbar from '../../components/topbar/Topbar';
 import { faPhone, faMapMarkerAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const initialValues = {
     name: '',
     email: '',
     subject: '',
     message: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().email('Invalid email format').required('Email is required'),
+    subject: Yup.string().required('Subject is required'),
+    message: Yup.string().required('Message is required')
+  });
 
-    emailjs.sendForm('service_dvurdt3', 'template_534qdnh', e.target, 'iEJTCxUED_u375swZ')
+  const handleSubmit = (values, { resetForm }) => {
+    emailjs.send('service_dvurdt3', 'template_534qdnh', values, 'iEJTCxUED_u375swZ')
       .then((result) => {
         console.log(result.text);
         alert('Message Sent Successfully');
+        resetForm();
       }, (error) => {
         console.log(error.text);
         alert('An error occurred, please try again');
       });
-
-    // Reset the form after submission
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
   };
 
   return (
@@ -67,27 +59,39 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="form-group-inline">
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="subject">Subject:</label>
-            <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message:</label>
-            <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
-          </div>
-          <button type="submit" className="submit-button">Submit</button>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form className="contact-form">
+              <div className="form-group-inline">
+                <div className="form-group">
+                  <label htmlFor="name">Name:</label>
+                  <Field type="text" id="name" name="name" />
+                  <ErrorMessage name="name" component="div" className="error-message" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email:</label>
+                  <Field type="email" id="email" name="email" />
+                  <ErrorMessage name="email" component="div" className="error-message" />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Subject:</label>
+                <Field type="text" id="subject" name="subject" />
+                <ErrorMessage name="subject" component="div" className="error-message" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message:</label>
+                <Field as="textarea" id="message" name="message" />
+                <ErrorMessage name="message" component="div" className="error-message" />
+              </div>
+              <button type="submit" className="submit-button" disabled={isSubmitting}>Submit</button>
+            </Form>
+          )}
+        </Formik>
       </div>
       <Footer />
     </>

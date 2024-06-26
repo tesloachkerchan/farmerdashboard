@@ -2,6 +2,7 @@
 import React from 'react';
 import './footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Weather from './Weather';
 import logo2 from '../.././assets/logo2.png'
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -15,7 +16,7 @@ const Footer = () => {
         <div className="footer-links">
           <div className="footer-section">
             <a href="/about">About Us</a>
-            <p>Learn more about our mission to connect agriculture professionals worldwide.</p>
+            <p>Learn more about our mission to connect agriculture professionals in Ethiopia.</p>
           </div>
           <div className="footer-section">
             <a href="/services">Services</a>
@@ -37,6 +38,7 @@ const Footer = () => {
             <FontAwesomeIcon icon={faInstagram} />
           </a>
         </div>
+        <Weather />
       </div>
       <hr className="footer-divider" />
       <div className="footer-bottom">
