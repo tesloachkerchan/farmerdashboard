@@ -1,6 +1,4 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import './contact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,30 +7,47 @@ import Topbar from '../../components/topbar/Topbar';
 import { faPhone, faMapMarkerAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
-  const initialValues = {
+  const [formValues, setFormValues] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
-  };
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email format').required('Email is required'),
-    subject: Yup.string().required('Subject is required'),
-    message: Yup.string().required('Message is required')
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    emailjs.send('service_dvurdt3', 'template_534qdnh', values, 'iEJTCxUED_u375swZ')
-      .then((result) => {
-        console.log(result.text);
-        alert('Message Sent Successfully');
-        resetForm();
-      }, (error) => {
-        console.log(error.text);
-        alert('An error occurred, please try again');
-      });
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let tempErrors = {};
+    if (!formValues.name) tempErrors.name = 'Name is required';
+    if (!formValues.email) tempErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formValues.email)) tempErrors.email = 'Invalid email format';
+    if (!formValues.subject) tempErrors.subject = 'Subject is required';
+    if (!formValues.message) tempErrors.message = 'Message is required';
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      emailjs.send('service_dvurdt3', 'template_534qdnh', formValues, 'iEJTCxUED_u375swZ')
+        .then((result) => {
+          console.log(result.text);
+          alert('Message Sent Successfully');
+          setFormValues({ name: '', email: '', subject: '', message: '' });
+        }, (error) => {
+          console.log(error.text);
+          alert('An error occurred, please try again');
+        });
+    }
   };
 
   return (
@@ -59,39 +74,54 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting }) => (
-            <Form className="contact-form">
-              <div className="form-group-inline">
-                <div className="form-group">
-                  <label htmlFor="name">Name:</label>
-                  <Field type="text" id="name" name="name" />
-                  <ErrorMessage name="name" component="div" className="error-message" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email:</label>
-                  <Field type="email" id="email" name="email" />
-                  <ErrorMessage name="email" component="div" className="error-message" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">Subject:</label>
-                <Field type="text" id="subject" name="subject" />
-                <ErrorMessage name="subject" component="div" className="error-message" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message:</label>
-                <Field as="textarea" id="message" name="message" />
-                <ErrorMessage name="message" component="div" className="error-message" />
-              </div>
-              <button type="submit" className="submit-button" disabled={isSubmitting}>Submit</button>
-            </Form>
-          )}
-        </Formik>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group-inline">
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formValues.name}
+                onChange={handleChange}
+              />
+              {errors.name && <div className="error-message">{errors.name}</div>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formValues.email}
+                onChange={handleChange}
+              />
+              {errors.email && <div className="error-message">{errors.email}</div>}
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="subject">Subject:</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={formValues.subject}
+              onChange={handleChange}
+            />
+            {errors.subject && <div className="error-message">{errors.subject}</div>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formValues.message}
+              onChange={handleChange}
+            />
+            {errors.message && <div className="error-message">{errors.message}</div>}
+          </div>
+          <button type="submit" className="submit-button">Submit</button>
+        </form>
       </div>
       <Footer />
     </>
